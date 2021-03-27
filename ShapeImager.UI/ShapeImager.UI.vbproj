@@ -129,6 +129,12 @@
     <None Include="ProjectRequirements.docx" />
     <None Include="ShapeList.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShapeImager.Data\ShapeImager.Data.vbproj">
+      <Project>{f2f181c3-6572-47c3-9584-bcbf9ccfdc76}</Project>
+      <Name>ShapeImager.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
