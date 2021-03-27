@@ -39,6 +39,15 @@ Public Class ShapePainter
                     Next
                 End Using
                 e.Graphics.DrawPolygon(pen, points.ToArray)
+            Case GetType(EquilTriangle)
+                Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
+                Dim altitude As Decimal = 0.5 * Math.Sqrt(3) * eqTri.SideLength
+                Dim half As Decimal = 0.5 * altitude
+                Dim left As New Point(eqTri.Center.X - half, eqTri.Center.Y - half)
+                Dim right As New Point(eqTri.Center.X + half, eqTri.Center.Y - half)
+                Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + half)
+                Dim points As Point() = {left, right, top}
+                e.Graphics.DrawPolygon(pen, points)
         End Select
     End Sub
 
