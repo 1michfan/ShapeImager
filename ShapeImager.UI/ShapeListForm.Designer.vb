@@ -27,13 +27,14 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
+        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CenterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrientationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +83,7 @@ Partial Class ShapeListForm
         '
         Me.gvShape.AutoGenerateColumns = False
         Me.gvShape.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn})
+        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn})
         Me.gvShape.DataSource = Me.ShapeBindingSource
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
@@ -91,33 +92,50 @@ Partial Class ShapeListForm
         Me.gvShape.Size = New System.Drawing.Size(394, 409)
         Me.gvShape.TabIndex = 1
         '
+        'ShapeBindingSource
+        '
+        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
+        '
+        'ShapeType
+        '
+        Me.ShapeType.DataPropertyName = "ShapeType"
+        Me.ShapeType.Frozen = True
+        Me.ShapeType.HeaderText = "ShapeType"
+        Me.ShapeType.Name = "ShapeType"
+        Me.ShapeType.ReadOnly = True
+        '
         'IdDataGridViewTextBoxColumn
         '
         Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        Me.IdDataGridViewTextBoxColumn.Frozen = True
         Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
         Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
         '
         'CenterDataGridViewTextBoxColumn
         '
         Me.CenterDataGridViewTextBoxColumn.DataPropertyName = "Center"
+        Me.CenterDataGridViewTextBoxColumn.Frozen = True
         Me.CenterDataGridViewTextBoxColumn.HeaderText = "Center"
         Me.CenterDataGridViewTextBoxColumn.Name = "CenterDataGridViewTextBoxColumn"
         '
         'ColorDataGridViewTextBoxColumn
         '
         Me.ColorDataGridViewTextBoxColumn.DataPropertyName = "Color"
+        Me.ColorDataGridViewTextBoxColumn.Frozen = True
         Me.ColorDataGridViewTextBoxColumn.HeaderText = "Color"
         Me.ColorDataGridViewTextBoxColumn.Name = "ColorDataGridViewTextBoxColumn"
         '
         'OrientationDataGridViewTextBoxColumn
         '
         Me.OrientationDataGridViewTextBoxColumn.DataPropertyName = "Orientation"
+        Me.OrientationDataGridViewTextBoxColumn.Frozen = True
         Me.OrientationDataGridViewTextBoxColumn.HeaderText = "Orientation"
         Me.OrientationDataGridViewTextBoxColumn.Name = "OrientationDataGridViewTextBoxColumn"
         '
         'AreaDataGridViewTextBoxColumn
         '
         Me.AreaDataGridViewTextBoxColumn.DataPropertyName = "Area"
+        Me.AreaDataGridViewTextBoxColumn.Frozen = True
         Me.AreaDataGridViewTextBoxColumn.HeaderText = "Area"
         Me.AreaDataGridViewTextBoxColumn.Name = "AreaDataGridViewTextBoxColumn"
         Me.AreaDataGridViewTextBoxColumn.ReadOnly = True
@@ -125,13 +143,10 @@ Partial Class ShapeListForm
         'PerimeterDataGridViewTextBoxColumn
         '
         Me.PerimeterDataGridViewTextBoxColumn.DataPropertyName = "Perimeter"
+        Me.PerimeterDataGridViewTextBoxColumn.Frozen = True
         Me.PerimeterDataGridViewTextBoxColumn.HeaderText = "Perimeter"
         Me.PerimeterDataGridViewTextBoxColumn.Name = "PerimeterDataGridViewTextBoxColumn"
         Me.PerimeterDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ShapeBindingSource
-        '
-        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
         '
         'ShapeListForm
         '
@@ -155,6 +170,7 @@ Partial Class ShapeListForm
     Friend WithEvents btnImportCsv As Button
     Friend WithEvents gvShape As DataGridView
     Friend WithEvents ShapeBindingSource As BindingSource
+    Friend WithEvents ShapeType As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CenterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ColorDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
