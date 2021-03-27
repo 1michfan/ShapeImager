@@ -11,4 +11,5 @@
     Public Property Id As Integer
     Public Property X As Decimal
     Public Property Y As Decimal
+    Public Property Polygon As Polygon
 End Class

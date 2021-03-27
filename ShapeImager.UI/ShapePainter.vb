@@ -27,6 +27,16 @@ Public Class ShapePainter
                 Dim sq As Square = DirectCast(_shape, Square)
                 Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y + (sq.SideLength / 2), sq.SideLength, sq.SideLength)
                 e.Graphics.DrawRectangle(pen, rect)
+            Case GetType(Polygon)
+                Dim poly As Polygon = DirectCast(_shape, Polygon)
+                Dim points As New List(Of Point)
+                Using db As New ShapeDbContext()
+                    Dim verts As List(Of Vertice) = db.Vertices.Where(Function(v) v.Polygon.Id = poly.Id).ToList
+                    For Each vert In verts
+                        points.Add(New Point(vert.X, vert.Y))
+                    Next
+                End Using
+                e.Graphics.DrawPolygon(pen, points.ToArray)
         End Select
     End Sub
 

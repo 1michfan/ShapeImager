@@ -1,11 +1,9 @@
 ﻿Public Class Polygon
     Inherits Shape
-    Public Property Vertices As New List(Of Vertice)
-    Public Overridable Property Sides As Integer
-    Public Sub AddVertice(x As Decimal, y As Decimal)
-        Vertices.Add(New Vertice(x, y))
-        Sides = Vertices.Count
+    Public Sub New()
+        Vertices = New List(Of Vertice)
     End Sub
+    Public Property Vertices As ICollection(Of Vertice)
     Public Overrides ReadOnly Property Area As Decimal
         Get
             Return 0
