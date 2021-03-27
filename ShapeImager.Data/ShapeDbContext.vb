@@ -1,11 +1,11 @@
 ﻿Imports System.Data.Entity
 
-Public Class ShapeDbContect
+Public Class ShapeDbContext
     Inherits DbContext
 
     Public Sub New()
         MyBase.New("ShapeDB")
-        Database.SetInitializer(New DropCreateDatabaseIfModelChanges(Of ShapeDbContect))
+        Database.SetInitializer(New DropCreateDatabaseIfModelChanges(Of ShapeDbContext))
         Database.Initialize(True)
     End Sub
 

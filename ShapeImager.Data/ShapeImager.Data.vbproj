@@ -74,6 +74,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvParser.vb" />
     <Compile Include="Models\Circle.vb" />
     <Compile Include="Models\Ellipse.vb" />
     <Compile Include="Models\Equilateral.vb" />
@@ -97,7 +98,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ShapeDbContect.vb" />
+    <Compile Include="ShapeDbContext.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

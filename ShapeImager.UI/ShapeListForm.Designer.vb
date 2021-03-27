@@ -27,13 +27,13 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
-        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CenterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ColorDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OrientationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,10 +91,6 @@ Partial Class ShapeListForm
         Me.gvShape.Size = New System.Drawing.Size(394, 409)
         Me.gvShape.TabIndex = 1
         '
-        'ShapeBindingSource
-        '
-        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
-        '
         'IdDataGridViewTextBoxColumn
         '
         Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
@@ -132,6 +128,10 @@ Partial Class ShapeListForm
         Me.PerimeterDataGridViewTextBoxColumn.HeaderText = "Perimeter"
         Me.PerimeterDataGridViewTextBoxColumn.Name = "PerimeterDataGridViewTextBoxColumn"
         Me.PerimeterDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ShapeBindingSource
+        '
+        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
         '
         'ShapeListForm
         '
