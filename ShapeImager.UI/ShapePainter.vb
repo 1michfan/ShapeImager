@@ -15,10 +15,12 @@ Public Class ShapePainter
         Dim pen As New Pen(Color.Black)
         'TODO customize color here
         'TODO orientation is currently store in radians, need to convert to degrees
+        'TODO graph currently draws from top left corner.
         'e.Graphics.RotateTransform(_shape.Orientation)
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
                 Dim ell As Ellipse = DirectCast(_shape, Ellipse)
+                'TODO need to double check this math.
                 Dim x As Decimal = ell.Center.X - (ell.Radius1 / 2)
                 Dim y As Decimal = ell.Center.Y - (ell.Radius2 / 2)
                 Dim rect As New Rectangle(x, y, ell.Radius1, ell.Radius2)
