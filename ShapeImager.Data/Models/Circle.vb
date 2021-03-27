@@ -4,7 +4,7 @@
 
     End Sub
     Public Sub New(centerX As Decimal, centerY As Decimal, radius As Decimal)
-        MyBase.New(centerX, centerY, 0, radius, radius)
+        MyBase.New(centerX, centerY, radius, radius, 0)
     End Sub
 
     Public Overrides ReadOnly Property Area As Decimal

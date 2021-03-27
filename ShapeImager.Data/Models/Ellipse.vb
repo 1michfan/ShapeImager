@@ -4,7 +4,7 @@
 
     End Sub
 
-    Public Sub New(centerX As Decimal, centerY As Decimal, orientation As Decimal, radius1 As Decimal, radius2 As Decimal)
+    Public Sub New(centerX As Decimal, centerY As Decimal, radius1 As Decimal, radius2 As Decimal, orientation As Decimal)
         Center = New Vertice(centerX, centerY)
         MyBase.Orientation = orientation
         Me.Radius1 = radius1
