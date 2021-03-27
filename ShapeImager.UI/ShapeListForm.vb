@@ -5,7 +5,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub FillData()
-        Dim db As New Data.ShapeDbContext()
+        Dim db As New ShapeDbContext()
         ShapeBindingSource.DataSource = db.Shapes.ToList()
 
     End Sub
@@ -13,7 +13,7 @@ Public Class ShapeListForm
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
         'TODO ask user if they want to clear existing data first.
         Dim filePath As String = "C:\Users\matto\source\repos\ShapeImager\ShapeImager.UI\ShapeList.csv" 'TODO get path from user - verify that it exists and isn't in use
-        Dim parser As New Data.CsvParser(filePath)
+        Dim parser As New CsvParser(filePath)
         parser.ParseFile()
         FillData()
     End Sub
@@ -26,5 +26,9 @@ Public Class ShapeListForm
                 ucShapePainter.PaintShape(shp)
             End If
         End If
+    End Sub
+
+    Private Sub Chart1_Paint(sender As Object, e As PaintEventArgs)
+
     End Sub
 End Class
