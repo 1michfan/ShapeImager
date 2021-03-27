@@ -12,11 +12,15 @@
     End Sub
     Public Property Radius1 As Decimal
     Public Property Radius2 As Decimal
-    Public Overrides Function GetArea() As Decimal
-        Throw New NotImplementedException()
-    End Function
+    Public Overrides ReadOnly Property Area As Decimal
+        Get
+            Return 0
+        End Get
+    End Property
 
-    Public Overrides Function GetPerimeter() As Decimal()
-        Throw New NotImplementedException()
-    End Function
+    Public Overrides ReadOnly Property Perimeter As Decimal
+        Get
+            Return 0
+        End Get
+    End Property
 End Class

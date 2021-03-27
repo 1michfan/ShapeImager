@@ -6,6 +6,6 @@ Public MustInherit Class Shape
     Public Property Color As Integer
     Public Property Orientation As Decimal
 
-    MustOverride Function GetArea() As Decimal
-    MustOverride Function GetPerimeter() As Decimal()
+    MustOverride ReadOnly Property Area As Decimal
+    MustOverride ReadOnly Property Perimeter As Decimal
 End Class
