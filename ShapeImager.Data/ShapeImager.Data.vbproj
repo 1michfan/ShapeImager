@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Models\EquilTriangle.vb" />
     <Compile Include="Models\Shape.vb" />
+    <Compile Include="Models\Square.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -1,4 +1,4 @@
-﻿Public Class EquilTriangle
+﻿Public Class Square
     Inherits Shape
     Public Property Orientation As Decimal
     Public Property SideLength As Decimal
