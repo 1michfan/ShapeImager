@@ -115,6 +115,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShapeListForm.resx">
       <DependentUpon>ShapeListForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +131,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="ProjectRequirements.docx" />
+    <None Include="ShapeImager.Data.Shape.datasource" />
     <None Include="ShapeList.csv" />
   </ItemGroup>
   <ItemGroup>
