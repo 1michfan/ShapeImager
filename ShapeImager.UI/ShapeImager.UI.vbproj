@@ -105,6 +105,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ShapePainter.Designer.vb">
+      <DependentUpon>ShapePainter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ShapePainter.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -116,6 +122,9 @@
     <EmbeddedResource Include="ShapeListForm.resx">
       <DependentUpon>ShapeListForm.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShapePainter.resx">
+      <DependentUpon>ShapePainter.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

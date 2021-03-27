@@ -1,4 +1,5 @@
-﻿Public Class ShapeListForm
+﻿Imports ShapeImager.Data
+Public Class ShapeListForm
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillData()
     End Sub
@@ -15,5 +16,15 @@
         Dim parser As New Data.CsvParser(filePath)
         parser.ParseFile()
         FillData()
+    End Sub
+
+    Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs) Handles gvShape.SelectionChanged
+        If gvShape.SelectedRows.Count = 1 Then
+            Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
+            If row IsNot Nothing Then
+                Dim shp As Shape = row.DataBoundItem
+                ucShapePainter.PaintShape(shp)
+            End If
+        End If
     End Sub
 End Class
