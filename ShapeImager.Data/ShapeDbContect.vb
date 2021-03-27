@@ -13,11 +13,13 @@ Public Class ShapeDbContect
         MyBase.OnModelCreating(modelBuilder)
         modelBuilder.Entity(Of Shape)().ToTable("Shapes")
         modelBuilder.Entity(Of Circle)().ToTable("Circles")
+        modelBuilder.Entity(Of Ellipse)().ToTable("Ellipses")
         modelBuilder.Entity(Of EquilTriangle)().ToTable("EquilTriangles")
         modelBuilder.Entity(Of Square)().ToTable("Squares")
     End Sub
 
     Public Overridable Property Circles As DbSet(Of Circle)
+    Public Overridable Property Ellipses As DbSet(Of Ellipse)
     Public Overridable Property EquilTriangle As DbSet(Of EquilTriangle)
     Public Overridable Property Shapes As DbSet(Of Shape)
     Public Overridable Property Squares As DbSet(Of Square)

@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Circle.vb" />
+    <Compile Include="Models\Ellipse.vb" />
     <Compile Include="Models\EquilTriangle.vb" />
     <Compile Include="Models\Shape.vb" />
     <Compile Include="Models\Square.vb" />
