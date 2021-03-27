@@ -4,7 +4,8 @@ Public MustInherit Class Shape
     'TODO store as int but convert to color?
     Public Property Center As Vertice
     Public Property Color As Integer
+    Public Property Orientation As Decimal
 
     MustOverride Function GetArea() As Decimal
-    MustOverride Function GetPerimater() As Decimal()
+    MustOverride Function GetPerimeter() As Decimal()
 End Class

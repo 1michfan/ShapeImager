@@ -1,11 +1,17 @@
 ﻿Public Class Circle
-    Inherits Shape
-    Public Property Radius As Decimal
+    Inherits Ellipse
+    Public Sub New()
+
+    End Sub
+    Public Sub New(centerX As Decimal, centerY As Decimal, radius As Decimal)
+        MyBase.New(centerX, centerY, 0, radius, radius)
+    End Sub
+
     Public Overrides Function GetArea() As Decimal
         Throw New NotImplementedException()
     End Function
 
-    Public Overrides Function GetPerimater() As Decimal()
+    Public Overrides Function GetPerimeter() As Decimal()
         Throw New NotImplementedException()
     End Function
 End Class
