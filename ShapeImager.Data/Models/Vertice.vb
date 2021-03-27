@@ -1,4 +1,8 @@
 ﻿Public Class Vertice
+    Private Sub New()
+
+    End Sub
+
     Public Sub New(x As Decimal, y As Decimal)
         Me.X = x
         Me.Y = y
