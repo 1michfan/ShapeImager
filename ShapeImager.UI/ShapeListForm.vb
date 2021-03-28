@@ -7,9 +7,11 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub FillData()
+        RemoveHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
         _db.Shapes.Load()
         ShapeBindingSource.DataSource = _db.Shapes.Local.ToBindingList()
         gvShape.ClearSelection()
+        AddHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
@@ -20,7 +22,7 @@ Public Class ShapeListForm
         FillData()
     End Sub
 
-    Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs) Handles gvShape.SelectionChanged
+    Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
         If gvShape.SelectedRows.Count = 1 Then
             Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
             If row IsNot Nothing Then
