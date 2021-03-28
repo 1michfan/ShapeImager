@@ -13,9 +13,10 @@ Public Class ShapePainter
     Private Sub ShapePainter_Paint(sender As Object, e As PaintEventArgs)
         If _shape Is Nothing Then Exit Sub
         Dim pen As New Pen(Color.Black)
+        Dim brush As New SolidBrush(Color.Black)
+
         'TODO customize color here
         'TODO orientation is currently store in radians, need to convert to degrees
-        'TODO graph currently draws from top left corner.
         'e.Graphics.RotateTransform(_shape.Orientation)
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
@@ -25,10 +26,12 @@ Public Class ShapePainter
                 Dim y As Decimal = ell.Center.Y - (ell.Radius2 / 2)
                 Dim rect As New Rectangle(x, y, ell.Radius1, ell.Radius2)
                 e.Graphics.DrawEllipse(pen, rect)
+                e.Graphics.FillEllipse(brush, rect)
             Case GetType(Square)
                 Dim sq As Square = DirectCast(_shape, Square)
                 Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y + (sq.SideLength / 2), sq.SideLength, sq.SideLength)
                 e.Graphics.DrawRectangle(pen, rect)
+                e.Graphics.FillRectangle(brush, rect)
             Case GetType(Polygon)
                 Dim poly As Polygon = DirectCast(_shape, Polygon)
                 Dim points As New List(Of Point)
@@ -38,6 +41,7 @@ Public Class ShapePainter
                     Next
                 End Using
                 e.Graphics.DrawPolygon(pen, points.ToArray)
+                e.Graphics.FillPolygon(brush, points.ToArray)
             Case GetType(EquilTriangle)
                 Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
                 Dim altitude As Decimal = 0.5 * Math.Sqrt(3) * eqTri.SideLength
@@ -47,6 +51,7 @@ Public Class ShapePainter
                 Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + half)
                 Dim points As Point() = {left, right, top}
                 e.Graphics.DrawPolygon(pen, points)
+                e.Graphics.FillPolygon(brush, points)
         End Select
     End Sub
 

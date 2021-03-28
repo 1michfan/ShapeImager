@@ -26,6 +26,7 @@ Partial Class ShapeListForm
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
+        Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,7 +37,6 @@ Partial Class ShapeListForm
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
-        Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,8 +46,8 @@ Partial Class ShapeListForm
         'tlpMain
         '
         Me.tlpMain.ColumnCount = 2
-        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.36145!))
-        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.63855!))
+        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.0112!))
+        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.9888!))
         Me.tlpMain.Controls.Add(Me.FlowLayoutPanel1, 0, 0)
         Me.tlpMain.Controls.Add(Me.gvShape, 0, 1)
         Me.tlpMain.Controls.Add(Me.ucShapePainter, 1, 2)
@@ -56,9 +56,9 @@ Partial Class ShapeListForm
         Me.tlpMain.Name = "tlpMain"
         Me.tlpMain.RowCount = 3
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.88235!))
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.11765!))
-        Me.tlpMain.Size = New System.Drawing.Size(1054, 715)
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.32436!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.67564!))
+        Me.tlpMain.Size = New System.Drawing.Size(1428, 778)
         Me.tlpMain.TabIndex = 0
         '
         'FlowLayoutPanel1
@@ -71,7 +71,7 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1048, 29)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1422, 29)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'btnImportCsv
@@ -82,6 +82,15 @@ Partial Class ShapeListForm
         Me.btnImportCsv.TabIndex = 0
         Me.btnImportCsv.Text = "Import CSV"
         Me.btnImportCsv.UseVisualStyleBackColor = True
+        '
+        'btnSaveChanges
+        '
+        Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
+        Me.btnSaveChanges.Name = "btnSaveChanges"
+        Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
+        Me.btnSaveChanges.TabIndex = 1
+        Me.btnSaveChanges.Text = "Save Changes"
+        Me.btnSaveChanges.UseVisualStyleBackColor = True
         '
         'gvShape
         '
@@ -94,7 +103,7 @@ Partial Class ShapeListForm
         Me.gvShape.Name = "gvShape"
         Me.tlpMain.SetRowSpan(Me.gvShape, 2)
         Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gvShape.Size = New System.Drawing.Size(419, 674)
+        Me.gvShape.Size = New System.Drawing.Size(750, 737)
         Me.gvShape.TabIndex = 1
         '
         'ShapeType
@@ -155,25 +164,16 @@ Partial Class ShapeListForm
         '
         'ucShapePainter
         '
-        Me.ucShapePainter.Location = New System.Drawing.Point(428, 111)
+        Me.ucShapePainter.Location = New System.Drawing.Point(759, 137)
         Me.ucShapePainter.Name = "ucShapePainter"
         Me.ucShapePainter.Size = New System.Drawing.Size(601, 601)
         Me.ucShapePainter.TabIndex = 2
-        '
-        'btnSaveChanges
-        '
-        Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
-        Me.btnSaveChanges.Name = "btnSaveChanges"
-        Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
-        Me.btnSaveChanges.TabIndex = 1
-        Me.btnSaveChanges.Text = "Save Changes"
-        Me.btnSaveChanges.UseVisualStyleBackColor = True
         '
         'ShapeListForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1054, 715)
+        Me.ClientSize = New System.Drawing.Size(1428, 778)
         Me.Controls.Add(Me.tlpMain)
         Me.Name = "ShapeListForm"
         Me.Text = "Shape List Form"
