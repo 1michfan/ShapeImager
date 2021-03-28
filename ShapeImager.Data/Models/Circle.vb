@@ -7,15 +7,9 @@
         MyBase.New(centerX, centerY, radius, radius, 0)
     End Sub
 
-    Public Overrides ReadOnly Property Area As Decimal
-        Get
-            Return 0
-        End Get
-    End Property
-
     Public Overrides ReadOnly Property Perimeter As Decimal
         Get
-            Return 0
+            Return Math.PI * 2 * Radius1
         End Get
     End Property
 End Class

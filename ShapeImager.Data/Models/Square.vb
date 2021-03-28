@@ -1,5 +1,7 @@
 ﻿Public Class Square
     Inherits Equilateral
+
+    ReadOnly _sides As Integer = 4
     Public Sub New()
 
     End Sub
@@ -12,13 +14,13 @@
 
     Public Overrides ReadOnly Property Area As Decimal
         Get
-            Return 0
+            Return Math.Pow(SideLength, 2)
         End Get
     End Property
 
     Public Overrides ReadOnly Property Perimeter As Decimal
         Get
-            Return 0
+            Return _sides * SideLength
         End Get
     End Property
 End Class

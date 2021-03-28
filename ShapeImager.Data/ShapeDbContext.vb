@@ -11,13 +11,6 @@ Public Class ShapeDbContext
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
         MyBase.OnModelCreating(modelBuilder)
-        'modelBuilder.Entity(Of Polygon).HasOptional(Function(p) p.).WithMany(Function(p) p.ve)
-        'modelBuilder.Entity(Of Shape)().ToTable("Shapes")
-        'modelBuilder.Entity(Of Circle)().ToTable("Circles")
-        'modelBuilder.Entity(Of Ellipse)().ToTable("Ellipses")
-        'modelBuilder.Entity(Of EquilTriangle)().ToTable("EquilTriangles")
-        'modelBuilder.Entity(Of Square)().ToTable("Squares")
-        'modelBuilder.Entity(Of Vertice)().ToTable("Vertices")
     End Sub
 
     Public Overridable Property Circles As DbSet(Of Circle)

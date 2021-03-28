@@ -14,13 +14,13 @@
     Public Property Radius2 As Decimal
     Public Overrides ReadOnly Property Area As Decimal
         Get
-            Return 0
+            Return Math.PI * Radius1 * Radius2
         End Get
     End Property
 
     Public Overrides ReadOnly Property Perimeter As Decimal
         Get
-            Return 0
+            Return 2 * Math.PI * Math.Sqrt((Radius1 * Radius1 + Radius2 * Radius2) / 2)
         End Get
     End Property
 End Class
