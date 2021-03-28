@@ -7,7 +7,7 @@ Public Class ShapeListForm
     Private Sub FillData()
         Dim db As New ShapeDbContext()
         ShapeBindingSource.DataSource = db.Shapes.ToList()
-
+        gvShape.ClearSelection()
     End Sub
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click

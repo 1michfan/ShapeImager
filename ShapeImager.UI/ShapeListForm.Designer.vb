@@ -91,6 +91,7 @@ Partial Class ShapeListForm
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
         Me.gvShape.Name = "gvShape"
         Me.tlpMain.SetRowSpan(Me.gvShape, 2)
+        Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gvShape.Size = New System.Drawing.Size(419, 674)
         Me.gvShape.TabIndex = 1
         '
