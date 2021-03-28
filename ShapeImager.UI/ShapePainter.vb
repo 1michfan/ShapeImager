@@ -20,39 +20,55 @@ Public Class ShapePainter
         'e.Graphics.RotateTransform(_shape.Orientation)
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
-                Dim ell As Ellipse = DirectCast(_shape, Ellipse)
-                'TODO need to double check this math.
-                Dim x As Decimal = ell.Center.X - (ell.Radius1 / 2)
-                Dim y As Decimal = ell.Center.Y - (ell.Radius2 / 2)
-                Dim rect As New Rectangle(x, y, ell.Radius1, ell.Radius2)
-                e.Graphics.DrawEllipse(pen, rect)
-                e.Graphics.FillEllipse(brush, rect)
+                DrawElippse(e, pen, brush)
             Case GetType(Square)
-                Dim sq As Square = DirectCast(_shape, Square)
-                Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y + (sq.SideLength / 2), sq.SideLength, sq.SideLength)
-                e.Graphics.DrawRectangle(pen, rect)
-                e.Graphics.FillRectangle(brush, rect)
+                DrawSquare(e, pen, brush)
             Case GetType(Polygon)
-                Dim poly As Polygon = DirectCast(_shape, Polygon)
-                Dim points As New List(Of Point)
-                Using db As New ShapeDbContext()
-                    For Each vert In poly.Vertices
-                        points.Add(New Point(vert.X, vert.Y))
-                    Next
-                End Using
-                e.Graphics.DrawPolygon(pen, points.ToArray)
-                e.Graphics.FillPolygon(brush, points.ToArray)
+                DrawPolygon(e, pen, brush)
             Case GetType(EquilTriangle)
-                Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
-                Dim altitude As Decimal = 0.5 * Math.Sqrt(3) * eqTri.SideLength
-                Dim half As Decimal = 0.5 * altitude
-                Dim left As New Point(eqTri.Center.X - half, eqTri.Center.Y - half)
-                Dim right As New Point(eqTri.Center.X + half, eqTri.Center.Y - half)
-                Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + half)
-                Dim points As Point() = {left, right, top}
-                e.Graphics.DrawPolygon(pen, points)
-                e.Graphics.FillPolygon(brush, points)
+                DrawTriangle(e, pen, brush)
         End Select
+    End Sub
+
+    Private Sub DrawTriangle(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
+        Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
+        Dim altitude As Decimal = 0.5 * Math.Sqrt(3) * eqTri.SideLength
+        Dim half As Decimal = 0.5 * altitude
+        Dim left As New Point(eqTri.Center.X - half, eqTri.Center.Y - half)
+        Dim right As New Point(eqTri.Center.X + half, eqTri.Center.Y - half)
+        Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + half)
+        Dim points As Point() = {left, right, top}
+        e.Graphics.DrawPolygon(pen, points)
+        e.Graphics.FillPolygon(brush, points)
+    End Sub
+
+    Private Sub DrawPolygon(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
+        Dim poly As Polygon = DirectCast(_shape, Polygon)
+        Dim points As New List(Of Point)
+        Using db As New ShapeDbContext()
+            For Each vert In poly.Vertices
+                points.Add(New Point(vert.X, vert.Y))
+            Next
+        End Using
+        e.Graphics.DrawPolygon(pen, points.ToArray)
+        e.Graphics.FillPolygon(brush, points.ToArray)
+    End Sub
+
+    Private Sub DrawSquare(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
+        Dim sq As Square = DirectCast(_shape, Square)
+        Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y + (sq.SideLength / 2), sq.SideLength, sq.SideLength)
+        e.Graphics.DrawRectangle(pen, rect)
+        e.Graphics.FillRectangle(brush, rect)
+    End Sub
+
+    Private Sub DrawElippse(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
+        Dim ell As Ellipse = DirectCast(_shape, Ellipse)
+        'TODO need to double check this math.
+        Dim x As Decimal = ell.Center.X - (ell.Radius1 / 2)
+        Dim y As Decimal = ell.Center.Y - (ell.Radius2 / 2)
+        Dim rect As New Rectangle(x, y, ell.Radius1, ell.Radius2)
+        e.Graphics.DrawEllipse(pen, rect)
+        e.Graphics.FillEllipse(brush, rect)
     End Sub
 
     Private Sub ShapePainter_PaintGrid(sender As Object, e As PaintEventArgs) Handles Me.Paint
