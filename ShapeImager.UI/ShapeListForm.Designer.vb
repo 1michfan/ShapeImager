@@ -36,6 +36,7 @@ Partial Class ShapeListForm
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
+        Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +68,7 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1.AutoSize = True
         Me.tlpMain.SetColumnSpan(Me.FlowLayoutPanel1, 2)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnImportCsv)
+        Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1048, 29)
@@ -76,7 +78,7 @@ Partial Class ShapeListForm
         '
         Me.btnImportCsv.Location = New System.Drawing.Point(3, 3)
         Me.btnImportCsv.Name = "btnImportCsv"
-        Me.btnImportCsv.Size = New System.Drawing.Size(75, 23)
+        Me.btnImportCsv.Size = New System.Drawing.Size(88, 23)
         Me.btnImportCsv.TabIndex = 0
         Me.btnImportCsv.Text = "Import CSV"
         Me.btnImportCsv.UseVisualStyleBackColor = True
@@ -158,6 +160,15 @@ Partial Class ShapeListForm
         Me.ucShapePainter.Size = New System.Drawing.Size(601, 601)
         Me.ucShapePainter.TabIndex = 2
         '
+        'btnSaveChanges
+        '
+        Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
+        Me.btnSaveChanges.Name = "btnSaveChanges"
+        Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
+        Me.btnSaveChanges.TabIndex = 1
+        Me.btnSaveChanges.Text = "Save Changes"
+        Me.btnSaveChanges.UseVisualStyleBackColor = True
+        '
         'ShapeListForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -188,4 +199,5 @@ Partial Class ShapeListForm
     Friend WithEvents OrientationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents btnSaveChanges As Button
 End Class

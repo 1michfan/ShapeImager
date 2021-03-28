@@ -1,12 +1,14 @@
-﻿Imports ShapeImager.Data
+﻿Imports System.Data.Entity
+Imports ShapeImager.Data
 Public Class ShapeListForm
+    Dim _db As New ShapeDbContext()
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillData()
     End Sub
 
     Private Sub FillData()
-        Dim db As New ShapeDbContext()
-        ShapeBindingSource.DataSource = db.Shapes.ToList()
+        _db.Shapes.Load()
+        ShapeBindingSource.DataSource = _db.Shapes.Local.ToBindingList()
         gvShape.ClearSelection()
     End Sub
 
@@ -26,5 +28,9 @@ Public Class ShapeListForm
                 ucShapePainter.PaintShape(shp)
             End If
         End If
+    End Sub
+
+    Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
+        _db.SaveChanges()
     End Sub
 End Class
