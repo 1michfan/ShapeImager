@@ -1,23 +1,26 @@
-﻿Imports ShapeImager.Data
+﻿Imports System.Drawing.Drawing2D
+Imports ShapeImager.Data
 
 Public Class ShapePainter
     Dim _shape As Shape
     Friend Sub PaintShape(shapeToDraw As Shape)
         Dim db As New ShapeDbContext()
         _shape = shapeToDraw
-        AddHandler Me.Paint, AddressOf ShapePainter_Paint
+        AddHandler Paint, AddressOf ShapePainter_Paint
         Refresh()
-        RemoveHandler Me.Paint, AddressOf ShapePainter_Paint
+        RemoveHandler Paint, AddressOf ShapePainter_Paint
     End Sub
 
     Private Sub ShapePainter_Paint(sender As Object, e As PaintEventArgs)
         If _shape Is Nothing Then Exit Sub
+        'TODO customize color here
         Dim pen As New Pen(Color.Black)
         Dim brush As New SolidBrush(Color.Black)
 
-        'TODO customize color here
-        'TODO orientation is currently store in radians, need to convert to degrees
-        'e.Graphics.RotateTransform(_shape.Orientation)
+        Dim mm As New Matrix(1, 0, 0, -1, 0, 600)
+        e.Graphics.Transform = mm
+
+        'e.Graphics.RotateTransform(CInt(_shape.Degrees))
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
                 DrawElippse(e, pen, brush)
@@ -56,7 +59,7 @@ Public Class ShapePainter
 
     Private Sub DrawSquare(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
         Dim sq As Square = DirectCast(_shape, Square)
-        Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y + (sq.SideLength / 2), sq.SideLength, sq.SideLength)
+        Dim rect As New Rectangle(sq.Center.X - (sq.SideLength / 2), sq.Center.Y - (sq.SideLength / 2), sq.SideLength, sq.SideLength)
         e.Graphics.DrawRectangle(pen, rect)
         e.Graphics.FillRectangle(brush, rect)
     End Sub
