@@ -28,6 +28,8 @@ Partial Class ShapeListForm
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
+        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CenterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -35,8 +37,7 @@ Partial Class ShapeListForm
         Me.OrientationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
+        Me.Degrees = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +97,7 @@ Partial Class ShapeListForm
         '
         Me.gvShape.AutoGenerateColumns = False
         Me.gvShape.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn})
+        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn, Me.Degrees})
         Me.gvShape.DataSource = Me.ShapeBindingSource
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
@@ -105,6 +106,17 @@ Partial Class ShapeListForm
         Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gvShape.Size = New System.Drawing.Size(750, 737)
         Me.gvShape.TabIndex = 1
+        '
+        'ShapeBindingSource
+        '
+        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
+        '
+        'ucShapePainter
+        '
+        Me.ucShapePainter.Location = New System.Drawing.Point(759, 136)
+        Me.ucShapePainter.Name = "ucShapePainter"
+        Me.ucShapePainter.Size = New System.Drawing.Size(601, 601)
+        Me.ucShapePainter.TabIndex = 2
         '
         'ShapeType
         '
@@ -120,6 +132,7 @@ Partial Class ShapeListForm
         Me.IdDataGridViewTextBoxColumn.Frozen = True
         Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
         Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.Width = 50
         '
         'CenterDataGridViewTextBoxColumn
         '
@@ -158,16 +171,11 @@ Partial Class ShapeListForm
         Me.PerimeterDataGridViewTextBoxColumn.Name = "PerimeterDataGridViewTextBoxColumn"
         Me.PerimeterDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'ShapeBindingSource
+        'Degrees
         '
-        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
-        '
-        'ucShapePainter
-        '
-        Me.ucShapePainter.Location = New System.Drawing.Point(759, 137)
-        Me.ucShapePainter.Name = "ucShapePainter"
-        Me.ucShapePainter.Size = New System.Drawing.Size(601, 601)
-        Me.ucShapePainter.TabIndex = 2
+        Me.Degrees.DataPropertyName = "Degrees"
+        Me.Degrees.HeaderText = "Degrees"
+        Me.Degrees.Name = "Degrees"
         '
         'ShapeListForm
         '
@@ -192,6 +200,7 @@ Partial Class ShapeListForm
     Friend WithEvents gvShape As DataGridView
     Friend WithEvents ShapeBindingSource As BindingSource
     Friend WithEvents ucShapePainter As ShapePainter
+    Friend WithEvents btnSaveChanges As Button
     Friend WithEvents ShapeType As DataGridViewTextBoxColumn
     Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CenterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
@@ -199,5 +208,5 @@ Partial Class ShapeListForm
     Friend WithEvents OrientationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents btnSaveChanges As Button
+    Friend WithEvents Degrees As DataGridViewTextBoxColumn
 End Class
