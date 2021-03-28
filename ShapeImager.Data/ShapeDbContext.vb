@@ -5,6 +5,7 @@ Public Class ShapeDbContext
 
     Public Sub New()
         MyBase.New("ShapeDB")
+        Configuration.LazyLoadingEnabled = True
         Database.SetInitializer(New DropCreateDatabaseIfModelChanges(Of ShapeDbContext))
         Database.Initialize(True)
     End Sub

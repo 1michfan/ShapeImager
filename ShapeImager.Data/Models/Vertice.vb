@@ -1,5 +1,5 @@
 ﻿Public Class Vertice
-    Private Sub New()
+    Public Sub New()
 
     End Sub
 

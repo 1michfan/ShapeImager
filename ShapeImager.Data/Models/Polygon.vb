@@ -1,21 +1,23 @@
 ﻿Public Class Polygon
     Inherits Shape
+
     Public Sub New()
         Vertices = New List(Of Vertice)
     End Sub
     Public Overridable Property Vertices As ICollection(Of Vertice)
+    Private ReadOnly Property Sides As Integer
+        Get
+            Return Vertices.Count
+        End Get
+    End Property
+
     Public Overrides ReadOnly Property Area As Decimal
         Get
-            Dim verts As List(Of Vertice)
-            Using db As New ShapeDbContext()
-                verts = db.Vertices.Where(Function(v) v.Polygon.Id = Id).ToList
-            End Using
-            Dim sides As Integer = verts.Count
             Dim a As Decimal = 0
-            For i = 0 To sides - 1
-                Dim nextVert = (i + 1) Mod sides
-                a = a + verts(i).X * verts(nextVert).Y
-                a = a - verts(i).Y * verts(nextVert).X
+            For i = 0 To Sides - 1
+                Dim nextVert = (i + 1) Mod Sides
+                a += Vertices(i).X * Vertices(nextVert).Y
+                a -= Vertices(i).Y * Vertices(nextVert).X
             Next
             Return a
         End Get
@@ -23,15 +25,10 @@
 
     Public Overrides ReadOnly Property Perimeter As Decimal
         Get
-            Dim verts As List(Of Vertice)
-            Using db As New ShapeDbContext()
-                verts = db.Vertices.Where(Function(v) v.Polygon.Id = Id).ToList
-            End Using
-            Dim sides As Integer = verts.Count
             Dim p As Decimal = 0
-            For i = 0 To sides - 1
-                Dim nextVert = (i + 1) Mod sides
-                p += GetDistance(verts(i), verts(nextVert))
+            For i = 0 To Sides - 1
+                Dim nextVert = (i + 1) Mod Sides
+                p += GetDistance(Vertices(i), Vertices(nextVert))
             Next
             Return p
         End Get

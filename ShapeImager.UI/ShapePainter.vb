@@ -33,8 +33,7 @@ Public Class ShapePainter
                 Dim poly As Polygon = DirectCast(_shape, Polygon)
                 Dim points As New List(Of Point)
                 Using db As New ShapeDbContext()
-                    Dim verts As List(Of Vertice) = db.Vertices.Where(Function(v) v.Polygon.Id = poly.Id).ToList
-                    For Each vert In verts
+                    For Each vert In poly.Vertices
                         points.Add(New Point(vert.X, vert.Y))
                     Next
                 End Using
