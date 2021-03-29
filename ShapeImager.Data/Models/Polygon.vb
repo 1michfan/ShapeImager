@@ -9,6 +9,7 @@ Public Class Polygon
     Public Overridable Property Vertices As ICollection(Of Vertice)
     Private ReadOnly Property Sides As Integer
         Get
+            'last vertices is repeat of the first one
             Return Vertices.Count - 1
         End Get
     End Property

@@ -17,10 +17,13 @@ Public Class ShapePainter
         Dim pen As New Pen(Color.Black)
         Dim brush As New SolidBrush(Color.Black)
 
-        Dim mm As New Matrix(1, 0, 0, -1, 0, 600)
-        e.Graphics.Transform = mm
+        e = SetCoordOriginBottomLeft(e)
 
-        'e.Graphics.RotateTransform(CInt(_shape.Degrees))
+        Dim center As Vertice = GetCenter()
+        e.Graphics.TranslateTransform(center.X, center.Y)
+        e.Graphics.RotateTransform(_shape.Degrees)
+        e.Graphics.TranslateTransform(-center.X, -center.Y)
+
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
                 DrawElippse(e, pen, brush)
@@ -32,6 +35,22 @@ Public Class ShapePainter
                 DrawTriangle(e, pen, brush)
         End Select
     End Sub
+
+    Private Function GetCenter() As Vertice
+        Dim center = _shape.Center
+        If center Is Nothing Then
+            Dim poly = TryCast(_shape, Polygon)
+            If poly IsNot Nothing Then center = poly.FindCentroid()
+        End If
+
+        Return center
+    End Function
+
+    Private Shared Function SetCoordOriginBottomLeft(e As PaintEventArgs) As PaintEventArgs
+        Dim mm As New Matrix(1, 0, 0, -1, 0, 600)
+        e.Graphics.Transform = mm
+        Return e
+    End Function
 
     Private Sub DrawTriangle(e As PaintEventArgs, pen As Pen, brush As SolidBrush)
         Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
