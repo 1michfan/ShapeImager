@@ -2,8 +2,11 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 
 Public MustInherit Class Shape
+    Public Sub New()
+        Color = -5658199 'Default Color: Dark Gray
+    End Sub
+
     Public Property Id As Integer
-    'TODO store as int but convert to color?
     Public Overridable Property Center As Vertice
     Public Property Color As Integer
     Public Property Orientation As Decimal

@@ -13,16 +13,12 @@ Public Class ShapePainter
 
     Private Sub ShapePainter_Paint(sender As Object, e As PaintEventArgs)
         If _shape Is Nothing Then Exit Sub
-        'TODO customize color here
-        Dim pen As New Pen(Color.Black)
-        Dim brush As New SolidBrush(Color.Black)
+        Dim color As Color = Color.FromArgb(_shape.Color)
+        Dim pen As New Pen(color)
+        Dim brush As New SolidBrush(color)
 
         e = SetCoordOriginBottomLeft(e)
-
-        Dim center As Vertice = GetCenter()
-        e.Graphics.TranslateTransform(center.X, center.Y)
-        e.Graphics.RotateTransform(_shape.Degrees)
-        e.Graphics.TranslateTransform(-center.X, -center.Y)
+        RotateShape(e)
 
         Select Case _shape.ShapeType
             Case GetType(Ellipse), GetType(Circle)
@@ -34,6 +30,13 @@ Public Class ShapePainter
             Case GetType(EquilTriangle)
                 DrawTriangle(e, pen, brush)
         End Select
+    End Sub
+
+    Private Sub RotateShape(e As PaintEventArgs)
+        Dim center As Vertice = GetCenter()
+        e.Graphics.TranslateTransform(center.X, center.Y)
+        e.Graphics.RotateTransform(_shape.Degrees)
+        e.Graphics.TranslateTransform(-center.X, -center.Y)
     End Sub
 
     Private Function GetCenter() As Vertice
