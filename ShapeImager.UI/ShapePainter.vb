@@ -57,11 +57,12 @@ Public Class ShapePainter
     Private Sub DrawTriangle(e As PaintEventArgs, brush As Brush)
         Dim eqTri As EquilTriangle = DirectCast(_shape, EquilTriangle)
         Dim altitude As Decimal = 0.5 * Math.Sqrt(3) * eqTri.SideLength
-        Dim half As Decimal = 0.5 * altitude
-        Dim left As New Point(eqTri.Center.X - half, eqTri.Center.Y - half)
-        Dim right As New Point(eqTri.Center.X + half, eqTri.Center.Y - half)
-        Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + half)
-        Dim points As Point() = {left, right, top}
+        Dim third As Decimal = (2 / 3) * altitude
+        Dim top As New Point(eqTri.Center.X, eqTri.Center.Y + third)
+        Dim halfLength As Decimal = (eqTri.SideLength / 2)
+        Dim left As New Point(top.X - halfLength, top.Y - altitude)
+        Dim right As New Point(top.X + halfLength, top.Y - altitude)
+        Dim points As Point() = {top, right, left}
         e.Graphics.FillPolygon(brush, points)
     End Sub
 
