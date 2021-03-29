@@ -1,4 +1,6 @@
-﻿Public Class Polygon
+﻿Imports System.Drawing
+
+Public Class Polygon
     Inherits Shape
 
     Public Sub New()
@@ -7,7 +9,7 @@
     Public Overridable Property Vertices As ICollection(Of Vertice)
     Private ReadOnly Property Sides As Integer
         Get
-            Return Vertices.Count
+            Return Vertices.Count - 1
         End Get
     End Property
 
@@ -19,7 +21,7 @@
                 a += Vertices(i).X * Vertices(nextVert).Y
                 a -= Vertices(i).Y * Vertices(nextVert).X
             Next
-            Return a
+            Return a / 2
         End Get
     End Property
 
@@ -37,4 +39,34 @@
     Private Function GetDistance(p1 As Vertice, p2 As Vertice) As Decimal
         Return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2))
     End Function
+
+    Public Function FindCentroid() As Vertice
+        If Sides < 3 Then Return New Vertice(0, 0)
+        Dim num_points As Integer = Sides
+        Dim pts As PointF() = New PointF(num_points + 1) {}
+        For i = 0 To num_points
+            pts(i) = New PointF(Vertices(i).X, Vertices(i).Y)
+        Next
+        Dim X As Single = 0
+        Dim Y As Single = 0
+        Dim second_factor As Single
+
+        For i As Integer = 0 To num_points - 1
+            second_factor = pts(i).X * pts(i + 1).Y - pts(i + 1).X * pts(i).Y
+            X += (pts(i).X + pts(i + 1).X) * second_factor
+            Y += (pts(i).Y + pts(i + 1).Y) * second_factor
+        Next
+
+        Dim polygon_area As Single = Area
+        X /= (6 * polygon_area)
+        Y /= (6 * polygon_area)
+
+        If X < 0 Then
+            X = -X
+            Y = -Y
+        End If
+
+        Return New Vertice(X, Y)
+    End Function
+
 End Class
