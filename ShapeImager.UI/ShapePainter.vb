@@ -74,6 +74,7 @@ Public Class ShapePainter
                 points.Add(New Point(vert.X, vert.Y))
             Next
         End Using
+        If points.Count = 0 Then Exit Sub
         e.Graphics.FillPolygon(brush, points.ToArray)
     End Sub
 

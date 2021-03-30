@@ -8,11 +8,11 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub FillData()
-        RemoveHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
+        RemoveHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
         _db.Shapes.Load()
         BsShape.DataSource = _db.Shapes.Local.ToBindingList()
-        gvShape.ClearSelection()
-        AddHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
+        GvShape.ClearSelection()
+        AddHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
@@ -24,7 +24,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
-        If gvShape.SelectedRows.Count = 1 Then
+        If GvShape.SelectedRows.Count = 1 Then
             Dim shp As Shape = GetSelectedShape()
             If shp IsNot Nothing Then
                 LoadSelectedShapeProps(shp)
@@ -34,7 +34,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Function GetSelectedShape() As Shape
-        Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
+        Dim row As DataGridViewRow = GvShape.SelectedRows().Item(0)
         If row Is Nothing Then
             Return Nothing
         Else
@@ -46,6 +46,18 @@ Public Class ShapeListForm
         LoadCenter(shp)
         LoadEllipse(shp)
         LoadEquilateral(shp)
+        LoadVertice(shp)
+    End Sub
+
+    Private Sub LoadVertice(shp As Shape)
+        RemoveHandler GvVertice.CellValueChanged, AddressOf RefreshShape
+        Dim poly As Polygon = TryCast(shp, Polygon)
+        If poly IsNot Nothing Then
+            BsVertice.DataSource = poly.Vertices
+        Else
+            BsVertice.Clear()
+        End If
+        AddHandler GvVertice.CellValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub LoadEquilateral(shp As Shape)
@@ -99,9 +111,14 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub RefreshShape(sender As Object, e As EventArgs)
+        RefreshShape()
+    End Sub
+
+    Private Sub RefreshShape()
         BsCenter.EndEdit()
         BsEllipse.EndEdit()
         BsEquilateral.EndEdit()
+        BsVertice.EndEdit()
         Dim shape = GetSelectedShape()
         If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
     End Sub
@@ -111,7 +128,7 @@ Public Class ShapeListForm
         _db.SaveChanges()
     End Sub
 
-    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gvShape.CellFormatting
+    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GvShape.CellFormatting
         If e.ColumnIndex = colColor.Index Then
             Dim shp As Shape = GetShape(e.RowIndex)
             If shp IsNot Nothing Then
@@ -126,14 +143,14 @@ Public Class ShapeListForm
 
     Private Function GetShape(index As Integer) As Shape
         If index < 0 Then Return Nothing
-        Dim row As DataGridViewRow = gvShape.Rows(index)
+        Dim row As DataGridViewRow = GvShape.Rows(index)
         Dim shp As Shape = row.DataBoundItem
         Return shp
     End Function
 
-    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
+    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GvShape.CellClick
         If e.ColumnIndex = colColor.Index Then
-            Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
+            Dim row As DataGridViewRow = GvShape.Rows(e.RowIndex)
             Dim shp As Shape = row.DataBoundItem
             If shp IsNot Nothing Then
                 Using cd As New ColorDialog()
@@ -146,7 +163,7 @@ Public Class ShapeListForm
         End If
     End Sub
 
-    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
+    Private Sub GvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles GvShape.CellValueChanged
         If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
             Dim shape As Shape = GetShape(e.RowIndex)
             If shape IsNot Nothing Then
