@@ -24,9 +24,6 @@ Partial Class ShapeListForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnImportCsv = New System.Windows.Forms.Button()
-        Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,13 +33,27 @@ Partial Class ShapeListForm
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Degrees = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.BsShape = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.btnImportCsv = New System.Windows.Forms.Button()
+        Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
+        Me.lblCenterX = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TbX = New System.Windows.Forms.NumericUpDown()
+        Me.TbY = New System.Windows.Forms.NumericUpDown()
         Me.tlpMain.SuspendLayout()
-        Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ShapeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsShape, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FlowLayoutPanel1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TbX, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TbY, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpMain
@@ -65,43 +76,12 @@ Partial Class ShapeListForm
         Me.tlpMain.Size = New System.Drawing.Size(1018, 701)
         Me.tlpMain.TabIndex = 0
         '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel1.AutoSize = True
-        Me.tlpMain.SetColumnSpan(Me.FlowLayoutPanel1, 2)
-        Me.FlowLayoutPanel1.Controls.Add(Me.btnImportCsv)
-        Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1012, 29)
-        Me.FlowLayoutPanel1.TabIndex = 0
-        '
-        'btnImportCsv
-        '
-        Me.btnImportCsv.Location = New System.Drawing.Point(3, 3)
-        Me.btnImportCsv.Name = "btnImportCsv"
-        Me.btnImportCsv.Size = New System.Drawing.Size(88, 23)
-        Me.btnImportCsv.TabIndex = 0
-        Me.btnImportCsv.Text = "Import CSV"
-        Me.btnImportCsv.UseVisualStyleBackColor = True
-        '
-        'btnSaveChanges
-        '
-        Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
-        Me.btnSaveChanges.Name = "btnSaveChanges"
-        Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
-        Me.btnSaveChanges.TabIndex = 1
-        Me.btnSaveChanges.Text = "Save Changes"
-        Me.btnSaveChanges.UseVisualStyleBackColor = True
-        '
         'gvShape
         '
         Me.gvShape.AutoGenerateColumns = False
         Me.gvShape.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.colColor, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn, Me.Degrees})
-        Me.gvShape.DataSource = Me.ShapeBindingSource
+        Me.gvShape.DataSource = Me.BsShape
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
         Me.gvShape.Name = "gvShape"
@@ -168,15 +148,55 @@ Partial Class ShapeListForm
         Me.Degrees.HeaderText = "Degrees"
         Me.Degrees.Name = "Degrees"
         '
-        'ShapeBindingSource
+        'BsShape
         '
-        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
+        Me.BsShape.DataSource = GetType(ShapeImager.Data.Shape)
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FlowLayoutPanel1.AutoSize = True
+        Me.tlpMain.SetColumnSpan(Me.FlowLayoutPanel1, 2)
+        Me.FlowLayoutPanel1.Controls.Add(Me.btnImportCsv)
+        Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1012, 29)
+        Me.FlowLayoutPanel1.TabIndex = 0
+        '
+        'btnImportCsv
+        '
+        Me.btnImportCsv.Location = New System.Drawing.Point(3, 3)
+        Me.btnImportCsv.Name = "btnImportCsv"
+        Me.btnImportCsv.Size = New System.Drawing.Size(88, 23)
+        Me.btnImportCsv.TabIndex = 0
+        Me.btnImportCsv.Text = "Import CSV"
+        Me.btnImportCsv.UseVisualStyleBackColor = True
+        '
+        'btnSaveChanges
+        '
+        Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
+        Me.btnSaveChanges.Name = "btnSaveChanges"
+        Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
+        Me.btnSaveChanges.TabIndex = 1
+        Me.btnSaveChanges.Text = "Save Changes"
+        Me.btnSaveChanges.UseVisualStyleBackColor = True
+        '
+        'ucShapePainter
+        '
+        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
+        Me.ucShapePainter.Name = "ucShapePainter"
+        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
+        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
+        Me.ucShapePainter.TabIndex = 2
         '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 293)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -186,13 +206,68 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(503, 333)
         Me.TableLayoutPanel1.TabIndex = 3
         '
-        'ucShapePainter
+        'TableLayoutPanel2
         '
-        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
-        Me.ucShapePainter.Name = "ucShapePainter"
-        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
-        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
-        Me.ucShapePainter.TabIndex = 2
+        Me.TableLayoutPanel2.AutoScroll = True
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.lblCenterX, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.TbX, 1, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.TbY, 1, 1)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 5
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(245, 129)
+        Me.TableLayoutPanel2.TabIndex = 0
+        '
+        'BsCenter
+        '
+        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
+        '
+        'lblCenterX
+        '
+        Me.lblCenterX.AutoSize = True
+        Me.lblCenterX.Location = New System.Drawing.Point(3, 0)
+        Me.lblCenterX.Name = "lblCenterX"
+        Me.lblCenterX.Size = New System.Drawing.Size(48, 13)
+        Me.lblCenterX.TabIndex = 0
+        Me.lblCenterX.Text = "Center X"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(3, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(48, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Center Y"
+        '
+        'TbX
+        '
+        Me.TbX.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "X", True))
+        Me.TbX.DecimalPlaces = 4
+        Me.TbX.Location = New System.Drawing.Point(125, 3)
+        Me.TbX.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbX.Name = "TbX"
+        Me.TbX.Size = New System.Drawing.Size(117, 20)
+        Me.TbX.TabIndex = 5
+        '
+        'TbY
+        '
+        Me.TbY.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "Y", True))
+        Me.TbY.DecimalPlaces = 4
+        Me.TbY.Location = New System.Drawing.Point(125, 37)
+        Me.TbY.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbY.Name = "TbY"
+        Me.TbY.Size = New System.Drawing.Size(117, 20)
+        Me.TbY.TabIndex = 6
         '
         'ShapeListForm
         '
@@ -204,9 +279,15 @@ Partial Class ShapeListForm
         Me.Text = "Shape List Form"
         Me.tlpMain.ResumeLayout(False)
         Me.tlpMain.PerformLayout()
-        Me.FlowLayoutPanel1.ResumeLayout(False)
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ShapeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsShape, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
+        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TbX, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TbY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,7 +296,7 @@ Partial Class ShapeListForm
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents btnImportCsv As Button
     Friend WithEvents gvShape As DataGridView
-    Friend WithEvents ShapeBindingSource As BindingSource
+    Friend WithEvents BsShape As BindingSource
     Friend WithEvents ucShapePainter As ShapePainter
     Friend WithEvents btnSaveChanges As Button
     Friend WithEvents ShapeType As DataGridViewTextBoxColumn
@@ -227,4 +308,10 @@ Partial Class ShapeListForm
     Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Degrees As DataGridViewTextBoxColumn
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents lblCenterX As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TbX As NumericUpDown
+    Friend WithEvents BsCenter As BindingSource
+    Friend WithEvents TbY As NumericUpDown
 End Class

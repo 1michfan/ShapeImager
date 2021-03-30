@@ -60,6 +60,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -142,6 +143,7 @@
     <None Include="packages.config" />
     <None Include="ProjectRequirements.docx" />
     <None Include="ShapeImager.Data.Shape.datasource" />
+    <None Include="ShapeImager.Data.Vertice.datasource" />
     <None Include="ShapeList.csv" />
   </ItemGroup>
   <ItemGroup>

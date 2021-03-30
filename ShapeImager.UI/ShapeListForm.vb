@@ -2,6 +2,7 @@
 Imports ShapeImager.Data
 Public Class ShapeListForm
     ReadOnly _db As New ShapeDbContext()
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillData()
     End Sub
@@ -9,7 +10,7 @@ Public Class ShapeListForm
     Private Sub FillData()
         RemoveHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
         _db.Shapes.Load()
-        ShapeBindingSource.DataSource = _db.Shapes.Local.ToBindingList()
+        BsShape.DataSource = _db.Shapes.Local.ToBindingList()
         gvShape.ClearSelection()
         AddHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
@@ -24,15 +25,43 @@ Public Class ShapeListForm
 
     Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
         If gvShape.SelectedRows.Count = 1 Then
-            Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
-            If row IsNot Nothing Then
-                Dim shp As Shape = row.DataBoundItem
+            Dim shp As Shape = GetSelectedShape()
+            If shp IsNot Nothing Then
+                LoadSelectedShapeProps(shp)
                 ucShapePainter.PaintShape(shp)
             End If
         End If
     End Sub
 
+    Private Function GetSelectedShape() As Shape
+        Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
+        If row Is Nothing Then
+            Return Nothing
+        Else
+            Return row.DataBoundItem
+        End If
+    End Function
+
+    Private Sub LoadSelectedShapeProps(shp As Shape)
+        RemoveHandler TbX.ValueChanged, AddressOf RefreshShape
+        RemoveHandler TbY.ValueChanged, AddressOf RefreshShape
+        If shp.Center Is Nothing Then
+            BsCenter.Clear()
+        Else
+            BsCenter.DataSource = shp.Center
+        End If
+        AddHandler TbX.ValueChanged, AddressOf RefreshShape
+        AddHandler TbY.ValueChanged, AddressOf RefreshShape
+    End Sub
+
+    Private Sub RefreshShape(sender As Object, e As EventArgs)
+        BsCenter.EndEdit()
+        Dim shape = GetSelectedShape()
+        If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
+    End Sub
+
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
+        BsShape.EndEdit()
         _db.SaveChanges()
     End Sub
 
@@ -41,10 +70,11 @@ Public Class ShapeListForm
             Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
             Dim shp As Shape = row.DataBoundItem
             If shp IsNot Nothing Then
-                e.CellStyle.BackColor = Color.FromArgb(shp.Color)
-                e.CellStyle.ForeColor = Color.FromArgb(shp.Color)
-                e.CellStyle.SelectionBackColor =  Color.FromArgb(shp.Color)
-                e.CellStyle.SelectionForeColor = Color.FromArgb(shp.Color)
+                Dim color As Color = Color.FromArgb(shp.Color)
+                e.CellStyle.BackColor = color
+                e.CellStyle.ForeColor = color
+                e.CellStyle.SelectionBackColor = color
+                e.CellStyle.SelectionForeColor = color
             End If
         End If
     End Sub
