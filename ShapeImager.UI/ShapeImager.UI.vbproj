@@ -113,6 +113,12 @@
     <Compile Include="ShapePainter.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ShapeSelectForm.Designer.vb">
+      <DependentUpon>ShapeSelectForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ShapeSelectForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShapePainter.resx">
       <DependentUpon>ShapePainter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShapeSelectForm.resx">
+      <DependentUpon>ShapeSelectForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
