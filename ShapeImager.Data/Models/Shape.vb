@@ -27,7 +27,12 @@ Public MustInherit Class Shape
     <[ReadOnly](True)>
     Public ReadOnly Property ShapeType As Type
         Get
-            Return Me.GetType().BaseType
+            Dim thisType = Me.GetType()
+            If thisType.Namespace = "System.Data.Entity.DynamicProxies" Then
+                Return thisType.BaseType
+            Else
+                Return thisType
+            End If
         End Get
     End Property
 
