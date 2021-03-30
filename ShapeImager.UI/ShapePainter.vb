@@ -49,7 +49,7 @@ Public Class ShapePainter
     End Function
 
     Private Shared Function SetCoordOriginBottomLeft(e As PaintEventArgs) As PaintEventArgs
-        Dim mm As New Matrix(1, 0, 0, -1, 0, 600)
+        Dim mm As New Matrix(1, 0, 0, -1, 0, 500)
         e.Graphics.Transform = mm
         Return e
     End Function
@@ -95,20 +95,18 @@ Public Class ShapePainter
     Private Sub ShapePainter_PaintGrid(sender As Object, e As PaintEventArgs) Handles Me.Paint
 
         Dim pen As New Pen(Color.Black)
-        e.Graphics.DrawLine(pen, 0, 0, 0, 600)
-        e.Graphics.DrawLine(pen, 100, 0, 100, 600)
-        e.Graphics.DrawLine(pen, 200, 0, 200, 600)
-        e.Graphics.DrawLine(pen, 300, 0, 300, 600)
-        e.Graphics.DrawLine(pen, 400, 0, 400, 600)
-        e.Graphics.DrawLine(pen, 500, 0, 500, 600)
-        e.Graphics.DrawLine(pen, 600, 0, 600, 600)
-        e.Graphics.DrawLine(pen, 0, 0, 600, 0)
-        e.Graphics.DrawLine(pen, 0, 100, 600, 100)
-        e.Graphics.DrawLine(pen, 0, 200, 600, 200)
-        e.Graphics.DrawLine(pen, 0, 300, 600, 300)
-        e.Graphics.DrawLine(pen, 0, 400, 600, 400)
-        e.Graphics.DrawLine(pen, 0, 500, 600, 500)
-        e.Graphics.DrawLine(pen, 0, 600, 600, 600)
+        e.Graphics.DrawLine(pen, 0, 0, 0, 500)
+        e.Graphics.DrawLine(pen, 100, 0, 100, 500)
+        e.Graphics.DrawLine(pen, 200, 0, 200, 500)
+        e.Graphics.DrawLine(pen, 300, 0, 300, 500)
+        e.Graphics.DrawLine(pen, 400, 0, 400, 500)
+        e.Graphics.DrawLine(pen, 500, 0, 500, 500)
+        e.Graphics.DrawLine(pen, 0, 0, 500, 0)
+        e.Graphics.DrawLine(pen, 0, 100, 500, 100)
+        e.Graphics.DrawLine(pen, 0, 200, 500, 200)
+        e.Graphics.DrawLine(pen, 0, 300, 500, 300)
+        e.Graphics.DrawLine(pen, 0, 400, 500, 400)
+        e.Graphics.DrawLine(pen, 0, 500, 500, 500)
 
     End Sub
 End Class

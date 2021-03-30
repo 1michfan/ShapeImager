@@ -29,7 +29,7 @@ Partial Class ShapePainter
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Name = "ShapePainter"
-        Me.Size = New System.Drawing.Size(600, 600)
+        Me.Size = New System.Drawing.Size(500, 500)
         Me.ResumeLayout(False)
 
     End Sub

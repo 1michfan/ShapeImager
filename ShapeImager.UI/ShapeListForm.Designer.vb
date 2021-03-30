@@ -28,8 +28,6 @@ Partial Class ShapeListForm
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.btnSaveChanges = New System.Windows.Forms.Button()
         Me.gvShape = New System.Windows.Forms.DataGridView()
-        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CenterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,6 +36,9 @@ Partial Class ShapeListForm
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Degrees = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShapeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Me.tlpMain.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,19 +48,21 @@ Partial Class ShapeListForm
         'tlpMain
         '
         Me.tlpMain.ColumnCount = 2
-        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.0112!))
-        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.9888!))
-        Me.tlpMain.Controls.Add(Me.FlowLayoutPanel1, 0, 0)
+        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpMain.Controls.Add(Me.gvShape, 0, 1)
-        Me.tlpMain.Controls.Add(Me.ucShapePainter, 1, 2)
+        Me.tlpMain.Controls.Add(Me.FlowLayoutPanel1, 0, 0)
+        Me.tlpMain.Controls.Add(Me.ucShapePainter, 1, 1)
+        Me.tlpMain.Controls.Add(Me.TableLayoutPanel1, 0, 2)
         Me.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpMain.Location = New System.Drawing.Point(0, 0)
         Me.tlpMain.Name = "tlpMain"
-        Me.tlpMain.RowCount = 3
+        Me.tlpMain.RowCount = 4
         Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.32436!))
-        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.67564!))
-        Me.tlpMain.Size = New System.Drawing.Size(1428, 778)
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 255.0!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 339.0!))
+        Me.tlpMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
+        Me.tlpMain.Size = New System.Drawing.Size(1018, 701)
         Me.tlpMain.TabIndex = 0
         '
         'FlowLayoutPanel1
@@ -72,7 +75,7 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1422, 29)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1012, 29)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'btnImportCsv
@@ -102,21 +105,9 @@ Partial Class ShapeListForm
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
         Me.gvShape.Name = "gvShape"
-        Me.tlpMain.SetRowSpan(Me.gvShape, 2)
         Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gvShape.Size = New System.Drawing.Size(750, 737)
+        Me.gvShape.Size = New System.Drawing.Size(503, 249)
         Me.gvShape.TabIndex = 1
-        '
-        'ShapeBindingSource
-        '
-        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
-        '
-        'ucShapePainter
-        '
-        Me.ucShapePainter.Location = New System.Drawing.Point(759, 136)
-        Me.ucShapePainter.Name = "ucShapePainter"
-        Me.ucShapePainter.Size = New System.Drawing.Size(601, 601)
-        Me.ucShapePainter.TabIndex = 2
         '
         'ShapeType
         '
@@ -177,11 +168,37 @@ Partial Class ShapeListForm
         Me.Degrees.HeaderText = "Degrees"
         Me.Degrees.Name = "Degrees"
         '
+        'ShapeBindingSource
+        '
+        Me.ShapeBindingSource.DataSource = GetType(ShapeImager.Data.Shape)
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 293)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(503, 333)
+        Me.TableLayoutPanel1.TabIndex = 3
+        '
+        'ucShapePainter
+        '
+        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
+        Me.ucShapePainter.Name = "ucShapePainter"
+        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
+        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
+        Me.ucShapePainter.TabIndex = 2
+        '
         'ShapeListForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1428, 778)
+        Me.ClientSize = New System.Drawing.Size(1018, 701)
         Me.Controls.Add(Me.tlpMain)
         Me.Name = "ShapeListForm"
         Me.Text = "Shape List Form"
@@ -209,4 +226,5 @@ Partial Class ShapeListForm
     Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Degrees As DataGridViewTextBoxColumn
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
 End Class
