@@ -52,10 +52,20 @@ Public Class ShapeListForm
         End If
         AddHandler TbX.ValueChanged, AddressOf RefreshShape
         AddHandler TbY.ValueChanged, AddressOf RefreshShape
+        RemoveHandler TbRadius1.ValueChanged, AddressOf RefreshShape
+        RemoveHandler TbRadius2.ValueChanged, AddressOf RefreshShape
+        If shp.ShapeType = GetType(Ellipse) Or shp.ShapeType = GetType(Circle) Then
+            BsEllipse.DataSource = shp
+        Else
+            BsEllipse.Clear()
+        End If
+        AddHandler TbRadius1.ValueChanged, AddressOf RefreshShape
+        AddHandler TbRadius2.ValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub RefreshShape(sender As Object, e As EventArgs)
         BsCenter.EndEdit()
+        BsEllipse.EndEdit()
         Dim shape = GetSelectedShape()
         If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
     End Sub

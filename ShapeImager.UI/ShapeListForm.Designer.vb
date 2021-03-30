@@ -23,6 +23,11 @@ Partial Class ShapeListForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Radius1Label As System.Windows.Forms.Label
+        Dim Radius2Label As System.Windows.Forms.Label
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
         Me.gvShape = New System.Windows.Forms.DataGridView()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,7 +41,6 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.btnSaveChanges = New System.Windows.Forms.Button()
-        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.lblCenterX = New System.Windows.Forms.Label()
@@ -44,6 +48,12 @@ Partial Class ShapeListForm
         Me.TbX = New System.Windows.Forms.NumericUpDown()
         Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
         Me.TbY = New System.Windows.Forms.NumericUpDown()
+        Me.BsEllipse = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TbRadius1 = New System.Windows.Forms.NumericUpDown()
+        Me.TbRadius2 = New System.Windows.Forms.NumericUpDown()
+        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
+        Radius1Label = New System.Windows.Forms.Label()
+        Radius2Label = New System.Windows.Forms.Label()
         Me.tlpMain.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +63,9 @@ Partial Class ShapeListForm
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpMain
@@ -78,12 +91,36 @@ Partial Class ShapeListForm
         'gvShape
         '
         Me.gvShape.AutoGenerateColumns = False
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gvShape.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gvShape.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.colColor, Me.colOrientation, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn, Me.colDegrees})
         Me.gvShape.DataSource = Me.BsShape
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gvShape.DefaultCellStyle = DataGridViewCellStyle5
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
         Me.gvShape.Name = "gvShape"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gvShape.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gvShape.Size = New System.Drawing.Size(503, 249)
         Me.gvShape.TabIndex = 1
@@ -176,14 +213,6 @@ Partial Class ShapeListForm
         Me.btnSaveChanges.Text = "Save Changes"
         Me.btnSaveChanges.UseVisualStyleBackColor = True
         '
-        'ucShapePainter
-        '
-        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
-        Me.ucShapePainter.Name = "ucShapePainter"
-        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
-        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
-        Me.ucShapePainter.TabIndex = 2
-        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.ColumnCount = 2
@@ -205,6 +234,10 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel2.ColumnCount = 2
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Radius2Label, 0, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.TbRadius2, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Radius1Label, 0, 2)
+        Me.TableLayoutPanel2.Controls.Add(Me.TbRadius1, 1, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.lblCenterX, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TbX, 1, 0)
@@ -217,7 +250,7 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(245, 129)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(245, 132)
         Me.TableLayoutPanel2.TabIndex = 0
         '
         'lblCenterX
@@ -232,7 +265,7 @@ Partial Class ShapeListForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 34)
+        Me.Label2.Location = New System.Drawing.Point(3, 36)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(48, 13)
         Me.Label2.TabIndex = 1
@@ -256,11 +289,61 @@ Partial Class ShapeListForm
         '
         Me.TbY.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "Y", True))
         Me.TbY.DecimalPlaces = 4
-        Me.TbY.Location = New System.Drawing.Point(125, 37)
+        Me.TbY.Location = New System.Drawing.Point(125, 39)
         Me.TbY.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.TbY.Name = "TbY"
         Me.TbY.Size = New System.Drawing.Size(117, 20)
         Me.TbY.TabIndex = 6
+        '
+        'BsEllipse
+        '
+        Me.BsEllipse.DataSource = GetType(ShapeImager.Data.Ellipse)
+        '
+        'Radius1Label
+        '
+        Radius1Label.AutoSize = True
+        Radius1Label.Location = New System.Drawing.Point(3, 72)
+        Radius1Label.Name = "Radius1Label"
+        Radius1Label.Size = New System.Drawing.Size(49, 13)
+        Radius1Label.TabIndex = 6
+        Radius1Label.Text = "Radius1:"
+        '
+        'TbRadius1
+        '
+        Me.TbRadius1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius1", True))
+        Me.TbRadius1.DecimalPlaces = 4
+        Me.TbRadius1.Location = New System.Drawing.Point(125, 75)
+        Me.TbRadius1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbRadius1.Name = "TbRadius1"
+        Me.TbRadius1.Size = New System.Drawing.Size(117, 20)
+        Me.TbRadius1.TabIndex = 7
+        '
+        'Radius2Label
+        '
+        Radius2Label.AutoSize = True
+        Radius2Label.Location = New System.Drawing.Point(3, 92)
+        Radius2Label.Name = "Radius2Label"
+        Radius2Label.Size = New System.Drawing.Size(49, 13)
+        Radius2Label.TabIndex = 7
+        Radius2Label.Text = "Radius2:"
+        '
+        'TbRadius2
+        '
+        Me.TbRadius2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius2", True))
+        Me.TbRadius2.DecimalPlaces = 4
+        Me.TbRadius2.Location = New System.Drawing.Point(125, 95)
+        Me.TbRadius2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbRadius2.Name = "TbRadius2"
+        Me.TbRadius2.Size = New System.Drawing.Size(117, 20)
+        Me.TbRadius2.TabIndex = 8
+        '
+        'ucShapePainter
+        '
+        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
+        Me.ucShapePainter.Name = "ucShapePainter"
+        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
+        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
+        Me.ucShapePainter.TabIndex = 2
         '
         'ShapeListForm
         '
@@ -281,6 +364,9 @@ Partial Class ShapeListForm
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -306,4 +392,7 @@ Partial Class ShapeListForm
     Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents colDegrees As DataGridViewTextBoxColumn
+    Friend WithEvents TbRadius2 As NumericUpDown
+    Friend WithEvents BsEllipse As BindingSource
+    Friend WithEvents TbRadius1 As NumericUpDown
 End Class

@@ -142,7 +142,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="ProjectRequirements.docx" />
+    <None Include="ShapeImager.Data.Circle.datasource" />
+    <None Include="ShapeImager.Data.CsvParser.datasource" />
+    <None Include="ShapeImager.Data.Ellipse.datasource" />
+    <None Include="ShapeImager.Data.Equilateral.datasource" />
+    <None Include="ShapeImager.Data.EquilTriangle.datasource" />
+    <None Include="ShapeImager.Data.Polygon.datasource" />
     <None Include="ShapeImager.Data.Shape.datasource" />
+    <None Include="ShapeImager.Data.ShapeDbContext.datasource" />
+    <None Include="ShapeImager.Data.Square.datasource" />
     <None Include="ShapeImager.Data.Vertice.datasource" />
     <None Include="ShapeList.csv" />
   </ItemGroup>
