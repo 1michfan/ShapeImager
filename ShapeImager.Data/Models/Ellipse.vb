@@ -10,8 +10,8 @@
         Me.Radius1 = radius1
         Me.Radius2 = radius2
     End Sub
-    Public Property Radius1 As Decimal
-    Public Property Radius2 As Decimal
+    Public Overridable Property Radius1 As Decimal
+    Public Overridable Property Radius2 As Decimal
     Public Overrides ReadOnly Property Area As Decimal
         Get
             Return Math.PI * Radius1 * Radius2
