@@ -19,7 +19,7 @@ Public Class ShapePainter
 
             Select Case _shape.ShapeType
                 Case GetType(Ellipse), GetType(Circle)
-                    DrawElippse(e, brush)
+                    DrawEllipse(e, brush)
                 Case GetType(Square)
                     DrawSquare(e, brush)
                 Case GetType(Polygon)
@@ -83,9 +83,8 @@ Public Class ShapePainter
         e.Graphics.FillRectangle(brush, rect)
     End Sub
 
-    Private Sub DrawElippse(e As PaintEventArgs, brush As Brush)
+    Private Sub DrawEllipse(e As PaintEventArgs, brush As Brush)
         Dim ell As Ellipse = DirectCast(_shape, Ellipse)
-        'TODO need to double check this math.
         Dim x As Decimal = ell.Center.X - (ell.Radius1 / 2)
         Dim y As Decimal = ell.Center.Y - (ell.Radius2 / 2)
         Dim rect As New Rectangle(x, y, ell.Radius1, ell.Radius2)
