@@ -27,12 +27,11 @@ Partial Class ShapeListForm
         Me.gvShape = New System.Windows.Forms.DataGridView()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CenterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colColor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrientationDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colOrientation = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AreaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PerimeterDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Degrees = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDegrees = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BsShape = New System.Windows.Forms.BindingSource(Me.components)
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
@@ -40,10 +39,10 @@ Partial Class ShapeListForm
         Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
         Me.lblCenterX = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TbX = New System.Windows.Forms.NumericUpDown()
+        Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
         Me.TbY = New System.Windows.Forms.NumericUpDown()
         Me.tlpMain.SuspendLayout()
         CType(Me.gvShape, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,8 +50,8 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -80,7 +79,7 @@ Partial Class ShapeListForm
         '
         Me.gvShape.AutoGenerateColumns = False
         Me.gvShape.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.CenterDataGridViewTextBoxColumn, Me.colColor, Me.OrientationDataGridViewTextBoxColumn, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn, Me.Degrees})
+        Me.gvShape.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ShapeType, Me.IdDataGridViewTextBoxColumn, Me.colColor, Me.colOrientation, Me.AreaDataGridViewTextBoxColumn, Me.PerimeterDataGridViewTextBoxColumn, Me.colDegrees})
         Me.gvShape.DataSource = Me.BsShape
         Me.gvShape.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gvShape.Location = New System.Drawing.Point(3, 38)
@@ -105,26 +104,20 @@ Partial Class ShapeListForm
         Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
         Me.IdDataGridViewTextBoxColumn.Width = 50
         '
-        'CenterDataGridViewTextBoxColumn
-        '
-        Me.CenterDataGridViewTextBoxColumn.DataPropertyName = "Center"
-        Me.CenterDataGridViewTextBoxColumn.Frozen = True
-        Me.CenterDataGridViewTextBoxColumn.HeaderText = "Center"
-        Me.CenterDataGridViewTextBoxColumn.Name = "CenterDataGridViewTextBoxColumn"
-        '
         'colColor
         '
         Me.colColor.DataPropertyName = "Color"
         Me.colColor.Frozen = True
         Me.colColor.HeaderText = "Color"
         Me.colColor.Name = "colColor"
+        Me.colColor.Width = 75
         '
-        'OrientationDataGridViewTextBoxColumn
+        'colOrientation
         '
-        Me.OrientationDataGridViewTextBoxColumn.DataPropertyName = "Orientation"
-        Me.OrientationDataGridViewTextBoxColumn.Frozen = True
-        Me.OrientationDataGridViewTextBoxColumn.HeaderText = "Orientation"
-        Me.OrientationDataGridViewTextBoxColumn.Name = "OrientationDataGridViewTextBoxColumn"
+        Me.colOrientation.DataPropertyName = "Orientation"
+        Me.colOrientation.Frozen = True
+        Me.colOrientation.HeaderText = "Orientation"
+        Me.colOrientation.Name = "colOrientation"
         '
         'AreaDataGridViewTextBoxColumn
         '
@@ -142,11 +135,11 @@ Partial Class ShapeListForm
         Me.PerimeterDataGridViewTextBoxColumn.Name = "PerimeterDataGridViewTextBoxColumn"
         Me.PerimeterDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'Degrees
+        'colDegrees
         '
-        Me.Degrees.DataPropertyName = "Degrees"
-        Me.Degrees.HeaderText = "Degrees"
-        Me.Degrees.Name = "Degrees"
+        Me.colDegrees.DataPropertyName = "Degrees"
+        Me.colDegrees.HeaderText = "Degrees"
+        Me.colDegrees.Name = "colDegrees"
         '
         'BsShape
         '
@@ -227,10 +220,6 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(245, 129)
         Me.TableLayoutPanel2.TabIndex = 0
         '
-        'BsCenter
-        '
-        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
-        '
         'lblCenterX
         '
         Me.lblCenterX.AutoSize = True
@@ -259,6 +248,10 @@ Partial Class ShapeListForm
         Me.TbX.Size = New System.Drawing.Size(117, 20)
         Me.TbX.TabIndex = 5
         '
+        'BsCenter
+        '
+        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
+        '
         'TbY
         '
         Me.TbY.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "Y", True))
@@ -285,8 +278,8 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -299,14 +292,6 @@ Partial Class ShapeListForm
     Friend WithEvents BsShape As BindingSource
     Friend WithEvents ucShapePainter As ShapePainter
     Friend WithEvents btnSaveChanges As Button
-    Friend WithEvents ShapeType As DataGridViewTextBoxColumn
-    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents CenterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents colColor As DataGridViewTextBoxColumn
-    Friend WithEvents OrientationDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents Degrees As DataGridViewTextBoxColumn
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents lblCenterX As Label
@@ -314,4 +299,11 @@ Partial Class ShapeListForm
     Friend WithEvents TbX As NumericUpDown
     Friend WithEvents BsCenter As BindingSource
     Friend WithEvents TbY As NumericUpDown
+    Friend WithEvents ShapeType As DataGridViewTextBoxColumn
+    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents colColor As DataGridViewTextBoxColumn
+    Friend WithEvents colOrientation As DataGridViewTextBoxColumn
+    Friend WithEvents AreaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PerimeterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents colDegrees As DataGridViewTextBoxColumn
 End Class

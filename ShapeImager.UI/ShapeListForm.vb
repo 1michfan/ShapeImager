@@ -67,8 +67,7 @@ Public Class ShapeListForm
 
     Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gvShape.CellFormatting
         If e.ColumnIndex = colColor.Index Then
-            Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
-            Dim shp As Shape = row.DataBoundItem
+            Dim shp As Shape = GetShape(e.RowIndex)
             If shp IsNot Nothing Then
                 Dim color As Color = Color.FromArgb(shp.Color)
                 e.CellStyle.BackColor = color
@@ -78,6 +77,13 @@ Public Class ShapeListForm
             End If
         End If
     End Sub
+
+    Private Function GetShape(index As Integer) As Shape
+        If index < 0 Then Return Nothing
+        Dim row As DataGridViewRow = gvShape.Rows(index)
+        Dim shp As Shape = row.DataBoundItem
+        Return shp
+    End Function
 
     Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
         If e.ColumnIndex = colColor.Index Then
@@ -90,6 +96,15 @@ Public Class ShapeListForm
                     row.Cells(e.ColumnIndex).Style.BackColor = cd.Color
                     ucShapePainter.PaintShape(shp)
                 End Using
+            End If
+        End If
+    End Sub
+
+    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
+        If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
+            Dim shape As Shape = GetShape(e.RowIndex)
+            If shape IsNot Nothing Then
+                ucShapePainter.PaintShape(shape)
             End If
         End If
     End Sub
