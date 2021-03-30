@@ -4,7 +4,6 @@ Imports ShapeImager.Data
 Public Class ShapePainter
     Dim _shape As Shape
     Friend Sub PaintShape(shapeToDraw As Shape)
-        Dim db As New ShapeDbContext()
         _shape = shapeToDraw
         AddHandler Paint, AddressOf ShapePainter_Paint
         Refresh()

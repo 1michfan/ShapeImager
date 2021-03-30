@@ -120,15 +120,16 @@ Public Class ShapeListForm
         BsEllipse.EndEdit()
         BsEquilateral.EndEdit()
         BsVertice.EndEdit()
-        Dim shape = GetSelectedShape()
         GvShape.Refresh()
         FillSumLabels()
+        Dim shape = GetSelectedShape()
         If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
         BsShape.EndEdit()
         _db.SaveChanges()
+        GvShape.Refresh()
     End Sub
 
     Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GvShape.CellFormatting
@@ -201,5 +202,27 @@ Public Class ShapeListForm
                 Next
             End If
         End If
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        AddHandler GvShape.RowsAdded, AddressOf GvShape_FocusNewRow
+        Dim shapeType As Type
+        Using frm As New ShapeSelectForm()
+            frm.ShowDialog()
+            shapeType = frm.SelectedShape
+        End Using
+        If shapeType IsNot Nothing Then
+            Dim shape = Activator.CreateInstance(shapeType)
+            shape.Center = New Vertice()
+            _db.Shapes.Add(shape)
+        End If
+        RemoveHandler GvShape.RowsAdded, AddressOf GvShape_FocusNewRow
+    End Sub
+
+    Private Sub GvShape_FocusNewRow(sender As Object, e As DataGridViewRowsAddedEventArgs)
+        GvShape.ClearSelection()
+        GvShape.CurrentCell = GvShape.Rows(e.RowIndex).Cells(0)
+        GvShape.Rows(e.RowIndex).Selected = True
+        BsShape.EndEdit()
     End Sub
 End Class
