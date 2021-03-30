@@ -188,4 +188,18 @@ Public Class ShapeListForm
         lblTotalArea.Text = Decimal.Round(area, 2)
         lblTotalPerimeter.Text = Decimal.Round(perim, 2)
     End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim rows = GvShape.SelectedRows
+        If rows.Count = 0 Then
+            MessageBox.Show("You must select a row first")
+        Else
+            Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)", "Delete?", MessageBoxButtons.YesNo)
+            If res = DialogResult.Yes Then
+                For Each row In rows
+                    GvShape.Rows.Remove(row)
+                Next
+            End If
+        End If
+    End Sub
 End Class

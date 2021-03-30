@@ -25,10 +25,10 @@ Partial Class ShapeListForm
         Me.components = New System.ComponentModel.Container()
         Dim Radius1Label As System.Windows.Forms.Label
         Dim Radius2Label As System.Windows.Forms.Label
+        Dim Label1 As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim Label1 As System.Windows.Forms.Label
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
         Me.GvShape = New System.Windows.Forms.DataGridView()
         Me.ShapeType = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,33 +42,34 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnImportCsv = New System.Windows.Forms.Button()
         Me.btnSaveChanges = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.tlpEquil = New System.Windows.Forms.TableLayoutPanel()
-        Me.TbRadius2 = New System.Windows.Forms.NumericUpDown()
-        Me.BsEllipse = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TbRadius1 = New System.Windows.Forms.NumericUpDown()
-        Me.lblCenterX = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TbX = New System.Windows.Forms.NumericUpDown()
-        Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
-        Me.TbY = New System.Windows.Forms.NumericUpDown()
-        Me.TbSideLength = New System.Windows.Forms.NumericUpDown()
-        Me.BsEquilateral = New System.Windows.Forms.BindingSource(Me.components)
-        Me.flpShapeProps = New System.Windows.Forms.FlowLayoutPanel()
-        Me.tlpCenter = New System.Windows.Forms.TableLayoutPanel()
-        Me.tlpRadius1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.tlpRadius2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
-        Me.GvVertice = New System.Windows.Forms.DataGridView()
-        Me.BsVertice = New System.Windows.Forms.BindingSource(Me.components)
-        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.XDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.YDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PolygonDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblTotalArea = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblTotalPerimeter = New System.Windows.Forms.Label()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.flpShapeProps = New System.Windows.Forms.FlowLayoutPanel()
+        Me.tlpCenter = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblCenterX = New System.Windows.Forms.Label()
+        Me.TbX = New System.Windows.Forms.NumericUpDown()
+        Me.BsCenter = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TbY = New System.Windows.Forms.NumericUpDown()
+        Me.tlpRadius1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TbRadius1 = New System.Windows.Forms.NumericUpDown()
+        Me.BsEllipse = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tlpRadius2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TbRadius2 = New System.Windows.Forms.NumericUpDown()
+        Me.tlpEquil = New System.Windows.Forms.TableLayoutPanel()
+        Me.TbSideLength = New System.Windows.Forms.NumericUpDown()
+        Me.BsEquilateral = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GvVertice = New System.Windows.Forms.DataGridView()
+        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.XDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.YDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PolygonDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BsVertice = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ucShapePainter = New ShapeImager.UI.ShapePainter()
         Radius1Label = New System.Windows.Forms.Label()
         Radius2Label = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
@@ -77,19 +78,19 @@ Partial Class ShapeListForm
         CType(Me.BsShape, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.tlpEquil.SuspendLayout()
-        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.flpShapeProps.SuspendLayout()
+        Me.tlpCenter.SuspendLayout()
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tlpRadius1.SuspendLayout()
+        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tlpRadius2.SuspendLayout()
+        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tlpEquil.SuspendLayout()
         CType(Me.TbSideLength, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsEquilateral, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.flpShapeProps.SuspendLayout()
-        Me.tlpCenter.SuspendLayout()
-        Me.tlpRadius1.SuspendLayout()
-        Me.tlpRadius2.SuspendLayout()
         CType(Me.GvVertice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BsVertice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,6 +117,17 @@ Partial Class ShapeListForm
         Radius2Label.TabIndex = 7
         Radius2Label.Text = "Radius2:"
         Radius2Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label1
+        '
+        Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Label1.Location = New System.Drawing.Point(3, 0)
+        Label1.Name = "Label1"
+        Label1.Size = New System.Drawing.Size(71, 27)
+        Label1.TabIndex = 9
+        Label1.Text = "Side Length:"
+        Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tlpMain
         '
@@ -235,7 +247,6 @@ Partial Class ShapeListForm
         '
         Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel1.AutoSize = True
         Me.tlpMain.SetColumnSpan(Me.FlowLayoutPanel1, 2)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnImportCsv)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnSaveChanges)
@@ -243,6 +254,7 @@ Partial Class ShapeListForm
         Me.FlowLayoutPanel1.Controls.Add(Me.lblTotalArea)
         Me.FlowLayoutPanel1.Controls.Add(Me.Label5)
         Me.FlowLayoutPanel1.Controls.Add(Me.lblTotalPerimeter)
+        Me.FlowLayoutPanel1.Controls.Add(Me.btnDelete)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1012, 29)
@@ -259,12 +271,58 @@ Partial Class ShapeListForm
         '
         'btnSaveChanges
         '
+        Me.btnSaveChanges.AutoSize = True
         Me.btnSaveChanges.Location = New System.Drawing.Point(97, 3)
         Me.btnSaveChanges.Name = "btnSaveChanges"
         Me.btnSaveChanges.Size = New System.Drawing.Size(88, 23)
         Me.btnSaveChanges.TabIndex = 1
         Me.btnSaveChanges.Text = "Save Changes"
         Me.btnSaveChanges.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(191, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Total Area: "
+        '
+        'lblTotalArea
+        '
+        Me.lblTotalArea.AutoSize = True
+        Me.lblTotalArea.Location = New System.Drawing.Point(259, 0)
+        Me.lblTotalArea.Name = "lblTotalArea"
+        Me.lblTotalArea.Size = New System.Drawing.Size(13, 13)
+        Me.lblTotalArea.TabIndex = 3
+        Me.lblTotalArea.Text = "0"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(278, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(81, 13)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Total Perimeter:"
+        '
+        'lblTotalPerimeter
+        '
+        Me.lblTotalPerimeter.AutoSize = True
+        Me.lblTotalPerimeter.Location = New System.Drawing.Point(365, 0)
+        Me.lblTotalPerimeter.Name = "lblTotalPerimeter"
+        Me.lblTotalPerimeter.Size = New System.Drawing.Size(13, 13)
+        Me.lblTotalPerimeter.TabIndex = 5
+        Me.lblTotalPerimeter.Text = "0"
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(384, 3)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(93, 23)
+        Me.btnDelete.TabIndex = 6
+        Me.btnDelete.Text = "Delete Selected"
+        Me.btnDelete.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel1
         '
@@ -281,124 +339,6 @@ Partial Class ShapeListForm
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(503, 333)
         Me.TableLayoutPanel1.TabIndex = 3
-        '
-        'tlpEquil
-        '
-        Me.tlpEquil.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tlpEquil.AutoScroll = True
-        Me.tlpEquil.ColumnCount = 2
-        Me.tlpEquil.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpEquil.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpEquil.Controls.Add(Me.TbSideLength, 1, 0)
-        Me.tlpEquil.Controls.Add(Label1, 0, 0)
-        Me.tlpEquil.Location = New System.Drawing.Point(0, 107)
-        Me.tlpEquil.Margin = New System.Windows.Forms.Padding(0)
-        Me.tlpEquil.Name = "tlpEquil"
-        Me.tlpEquil.RowCount = 1
-        Me.tlpEquil.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpEquil.Size = New System.Drawing.Size(245, 27)
-        Me.tlpEquil.TabIndex = 0
-        '
-        'TbRadius2
-        '
-        Me.TbRadius2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbRadius2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius2", True))
-        Me.TbRadius2.DecimalPlaces = 4
-        Me.TbRadius2.Location = New System.Drawing.Point(125, 3)
-        Me.TbRadius2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.TbRadius2.Name = "TbRadius2"
-        Me.TbRadius2.Size = New System.Drawing.Size(117, 20)
-        Me.TbRadius2.TabIndex = 8
-        '
-        'BsEllipse
-        '
-        Me.BsEllipse.DataSource = GetType(ShapeImager.Data.Ellipse)
-        '
-        'TbRadius1
-        '
-        Me.TbRadius1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbRadius1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius1", True))
-        Me.TbRadius1.DecimalPlaces = 4
-        Me.TbRadius1.Location = New System.Drawing.Point(125, 3)
-        Me.TbRadius1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.TbRadius1.Name = "TbRadius1"
-        Me.TbRadius1.Size = New System.Drawing.Size(117, 20)
-        Me.TbRadius1.TabIndex = 7
-        '
-        'lblCenterX
-        '
-        Me.lblCenterX.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lblCenterX.Location = New System.Drawing.Point(3, 0)
-        Me.lblCenterX.Name = "lblCenterX"
-        Me.lblCenterX.Size = New System.Drawing.Size(51, 26)
-        Me.lblCenterX.TabIndex = 0
-        Me.lblCenterX.Text = "Center X:"
-        Me.lblCenterX.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label2.Location = New System.Drawing.Point(3, 26)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(51, 27)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Center Y:"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'TbX
-        '
-        Me.TbX.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbX.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "X", True))
-        Me.TbX.DecimalPlaces = 4
-        Me.TbX.Location = New System.Drawing.Point(125, 3)
-        Me.TbX.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.TbX.Name = "TbX"
-        Me.TbX.Size = New System.Drawing.Size(117, 20)
-        Me.TbX.TabIndex = 5
-        '
-        'BsCenter
-        '
-        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
-        '
-        'TbY
-        '
-        Me.TbY.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbY.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "Y", True))
-        Me.TbY.DecimalPlaces = 4
-        Me.TbY.Location = New System.Drawing.Point(125, 29)
-        Me.TbY.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.TbY.Name = "TbY"
-        Me.TbY.Size = New System.Drawing.Size(117, 20)
-        Me.TbY.TabIndex = 6
-        '
-        'Label1
-        '
-        Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Label1.Location = New System.Drawing.Point(3, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New System.Drawing.Size(71, 27)
-        Label1.TabIndex = 9
-        Label1.Text = "Side Length:"
-        Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'TbSideLength
-        '
-        Me.TbSideLength.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TbSideLength.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEquilateral, "SideLength", True))
-        Me.TbSideLength.DecimalPlaces = 4
-        Me.TbSideLength.Location = New System.Drawing.Point(125, 3)
-        Me.TbSideLength.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        Me.TbSideLength.Name = "TbSideLength"
-        Me.TbSideLength.Size = New System.Drawing.Size(117, 20)
-        Me.TbSideLength.TabIndex = 10
-        '
-        'BsEquilateral
-        '
-        Me.BsEquilateral.DataSource = GetType(ShapeImager.Data.Equilateral)
         '
         'flpShapeProps
         '
@@ -431,6 +371,54 @@ Partial Class ShapeListForm
         Me.tlpCenter.Size = New System.Drawing.Size(245, 53)
         Me.tlpCenter.TabIndex = 0
         '
+        'lblCenterX
+        '
+        Me.lblCenterX.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblCenterX.Location = New System.Drawing.Point(3, 0)
+        Me.lblCenterX.Name = "lblCenterX"
+        Me.lblCenterX.Size = New System.Drawing.Size(51, 26)
+        Me.lblCenterX.TabIndex = 0
+        Me.lblCenterX.Text = "Center X:"
+        Me.lblCenterX.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TbX
+        '
+        Me.TbX.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbX.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "X", True))
+        Me.TbX.DecimalPlaces = 4
+        Me.TbX.Location = New System.Drawing.Point(125, 3)
+        Me.TbX.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbX.Name = "TbX"
+        Me.TbX.Size = New System.Drawing.Size(117, 20)
+        Me.TbX.TabIndex = 5
+        '
+        'BsCenter
+        '
+        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label2.Location = New System.Drawing.Point(3, 26)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(51, 27)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Center Y:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TbY
+        '
+        Me.TbY.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbY.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsCenter, "Y", True))
+        Me.TbY.DecimalPlaces = 4
+        Me.TbY.Location = New System.Drawing.Point(125, 29)
+        Me.TbY.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbY.Name = "TbY"
+        Me.TbY.Size = New System.Drawing.Size(117, 20)
+        Me.TbY.TabIndex = 6
+        '
         'tlpRadius1
         '
         Me.tlpRadius1.ColumnCount = 2
@@ -445,6 +433,21 @@ Partial Class ShapeListForm
         Me.tlpRadius1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.tlpRadius1.Size = New System.Drawing.Size(245, 27)
         Me.tlpRadius1.TabIndex = 1
+        '
+        'TbRadius1
+        '
+        Me.TbRadius1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbRadius1.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius1", True))
+        Me.TbRadius1.DecimalPlaces = 4
+        Me.TbRadius1.Location = New System.Drawing.Point(125, 3)
+        Me.TbRadius1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbRadius1.Name = "TbRadius1"
+        Me.TbRadius1.Size = New System.Drawing.Size(117, 20)
+        Me.TbRadius1.TabIndex = 7
+        '
+        'BsEllipse
+        '
+        Me.BsEllipse.DataSource = GetType(ShapeImager.Data.Ellipse)
         '
         'tlpRadius2
         '
@@ -461,13 +464,49 @@ Partial Class ShapeListForm
         Me.tlpRadius2.Size = New System.Drawing.Size(245, 27)
         Me.tlpRadius2.TabIndex = 2
         '
-        'ucShapePainter
+        'TbRadius2
         '
-        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
-        Me.ucShapePainter.Name = "ucShapePainter"
-        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
-        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
-        Me.ucShapePainter.TabIndex = 2
+        Me.TbRadius2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbRadius2.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEllipse, "Radius2", True))
+        Me.TbRadius2.DecimalPlaces = 4
+        Me.TbRadius2.Location = New System.Drawing.Point(125, 3)
+        Me.TbRadius2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbRadius2.Name = "TbRadius2"
+        Me.TbRadius2.Size = New System.Drawing.Size(117, 20)
+        Me.TbRadius2.TabIndex = 8
+        '
+        'tlpEquil
+        '
+        Me.tlpEquil.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tlpEquil.AutoScroll = True
+        Me.tlpEquil.ColumnCount = 2
+        Me.tlpEquil.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpEquil.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpEquil.Controls.Add(Me.TbSideLength, 1, 0)
+        Me.tlpEquil.Controls.Add(Label1, 0, 0)
+        Me.tlpEquil.Location = New System.Drawing.Point(0, 107)
+        Me.tlpEquil.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpEquil.Name = "tlpEquil"
+        Me.tlpEquil.RowCount = 1
+        Me.tlpEquil.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.tlpEquil.Size = New System.Drawing.Size(245, 27)
+        Me.tlpEquil.TabIndex = 0
+        '
+        'TbSideLength
+        '
+        Me.TbSideLength.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TbSideLength.DataBindings.Add(New System.Windows.Forms.Binding("Value", Me.BsEquilateral, "SideLength", True))
+        Me.TbSideLength.DecimalPlaces = 4
+        Me.TbSideLength.Location = New System.Drawing.Point(125, 3)
+        Me.TbSideLength.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.TbSideLength.Name = "TbSideLength"
+        Me.TbSideLength.Size = New System.Drawing.Size(117, 20)
+        Me.TbSideLength.TabIndex = 10
+        '
+        'BsEquilateral
+        '
+        Me.BsEquilateral.DataSource = GetType(ShapeImager.Data.Equilateral)
         '
         'GvVertice
         '
@@ -481,10 +520,6 @@ Partial Class ShapeListForm
         Me.GvVertice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GvVertice.Size = New System.Drawing.Size(246, 327)
         Me.GvVertice.TabIndex = 2
-        '
-        'BsVertice
-        '
-        Me.BsVertice.DataSource = GetType(ShapeImager.Data.Vertice)
         '
         'IdDataGridViewTextBoxColumn1
         '
@@ -511,40 +546,17 @@ Partial Class ShapeListForm
         Me.PolygonDataGridViewTextBoxColumn.HeaderText = "Polygon"
         Me.PolygonDataGridViewTextBoxColumn.Name = "PolygonDataGridViewTextBoxColumn"
         '
-        'Label3
+        'BsVertice
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(191, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Total Area: "
+        Me.BsVertice.DataSource = GetType(ShapeImager.Data.Vertice)
         '
-        'lblTotalArea
+        'ucShapePainter
         '
-        Me.lblTotalArea.AutoSize = True
-        Me.lblTotalArea.Location = New System.Drawing.Point(259, 0)
-        Me.lblTotalArea.Name = "lblTotalArea"
-        Me.lblTotalArea.Size = New System.Drawing.Size(0, 13)
-        Me.lblTotalArea.TabIndex = 3
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(265, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(78, 13)
-        Me.Label5.TabIndex = 4
-        Me.Label5.Text = "Total Perimeter"
-        '
-        'lblTotalPerimeter
-        '
-        Me.lblTotalPerimeter.AutoSize = True
-        Me.lblTotalPerimeter.Location = New System.Drawing.Point(349, 0)
-        Me.lblTotalPerimeter.Name = "lblTotalPerimeter"
-        Me.lblTotalPerimeter.Size = New System.Drawing.Size(39, 13)
-        Me.lblTotalPerimeter.TabIndex = 5
-        Me.lblTotalPerimeter.Text = "Label6"
+        Me.ucShapePainter.Location = New System.Drawing.Point(512, 38)
+        Me.ucShapePainter.Name = "ucShapePainter"
+        Me.tlpMain.SetRowSpan(Me.ucShapePainter, 2)
+        Me.ucShapePainter.Size = New System.Drawing.Size(501, 501)
+        Me.ucShapePainter.TabIndex = 2
         '
         'ShapeListForm
         '
@@ -555,26 +567,25 @@ Partial Class ShapeListForm
         Me.Name = "ShapeListForm"
         Me.Text = "Shape List Form"
         Me.tlpMain.ResumeLayout(False)
-        Me.tlpMain.PerformLayout()
         CType(Me.GvShape, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsShape, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.tlpEquil.ResumeLayout(False)
-        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.flpShapeProps.ResumeLayout(False)
+        Me.tlpCenter.ResumeLayout(False)
         CType(Me.TbX, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsCenter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TbY, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TbSideLength, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BsEquilateral, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.flpShapeProps.ResumeLayout(False)
-        Me.tlpCenter.ResumeLayout(False)
         Me.tlpRadius1.ResumeLayout(False)
+        CType(Me.TbRadius1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsEllipse, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpRadius2.ResumeLayout(False)
         Me.tlpRadius2.PerformLayout()
+        CType(Me.TbRadius2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tlpEquil.ResumeLayout(False)
+        CType(Me.TbSideLength, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BsEquilateral, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GvVertice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BsVertice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -621,4 +632,5 @@ Partial Class ShapeListForm
     Friend WithEvents lblTotalArea As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents lblTotalPerimeter As Label
+    Friend WithEvents btnDelete As Button
 End Class
