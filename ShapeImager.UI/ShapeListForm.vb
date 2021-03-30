@@ -43,31 +43,59 @@ Public Class ShapeListForm
     End Function
 
     Private Sub LoadSelectedShapeProps(shp As Shape)
-        RemoveHandler TbX.ValueChanged, AddressOf RefreshShape
-        RemoveHandler TbY.ValueChanged, AddressOf RefreshShape
-        If shp.Center Is Nothing Then
-            BsCenter.Clear()
-        Else
-            BsCenter.DataSource = shp.Center
-        End If
-        AddHandler TbX.ValueChanged, AddressOf RefreshShape
-        AddHandler TbY.ValueChanged, AddressOf RefreshShape
-        RemoveHandler TbRadius1.ValueChanged, AddressOf RefreshShape
-        RemoveHandler TbRadius2.ValueChanged, AddressOf RefreshShape
-        If shp.ShapeType = GetType(Ellipse) Or shp.ShapeType = GetType(Circle) Then
-            BsEllipse.DataSource = shp
-        Else
-            BsEllipse.Clear()
-        End If
-        AddHandler TbRadius1.ValueChanged, AddressOf RefreshShape
-        AddHandler TbRadius2.ValueChanged, AddressOf RefreshShape
+        LoadCenter(shp)
+        LoadEllipse(shp)
+        LoadEquilateral(shp)
+    End Sub
+
+    Private Sub LoadEquilateral(shp As Shape)
         RemoveHandler TbSideLength.ValueChanged, AddressOf RefreshShape
         If shp.ShapeType.BaseType = GetType(Equilateral) Then
             BsEquilateral.DataSource = shp
+            tlpEquil.Visible = True
         Else
             BsEquilateral.Clear()
+            tlpEquil.Visible = False
         End If
         AddHandler TbSideLength.ValueChanged, AddressOf RefreshShape
+    End Sub
+
+    Private Sub LoadEllipse(shp As Shape)
+        UnsubscribeEdits(TbRadius1)
+        UnsubscribeEdits(TbRadius2)
+        If shp.ShapeType = GetType(Ellipse) Or shp.ShapeType = GetType(Circle) Then
+            BsEllipse.DataSource = shp
+            tlpRadius1.Visible = True
+            tlpRadius2.Visible = (shp.ShapeType = GetType(Ellipse))
+        Else
+            BsEllipse.Clear()
+            tlpRadius1.Visible = False
+            tlpRadius2.Visible = False
+        End If
+        SubscribeEdits(TbRadius1)
+        SubscribeEdits(TbRadius2)
+    End Sub
+
+    Private Sub LoadCenter(shp As Shape)
+        UnsubscribeEdits(TbX)
+        UnsubscribeEdits(TbY)
+        If shp.Center Is Nothing Then
+            BsCenter.Clear()
+            tlpCenter.Visible = False
+        Else
+            BsCenter.DataSource = shp.Center
+            tlpCenter.Visible = True
+        End If
+        SubscribeEdits(TbX)
+        SubscribeEdits(TbY)
+    End Sub
+
+    Private Sub UnsubscribeEdits(tb As NumericUpDown)
+        RemoveHandler tb.ValueChanged, AddressOf RefreshShape
+    End Sub
+
+    Private Sub SubscribeEdits(tb As NumericUpDown)
+        AddHandler tb.ValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub RefreshShape(sender As Object, e As EventArgs)
