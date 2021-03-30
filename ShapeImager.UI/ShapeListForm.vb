@@ -12,6 +12,7 @@ Public Class ShapeListForm
         _db.Shapes.Load()
         BsShape.DataSource = _db.Shapes.Local.ToBindingList()
         GvShape.ClearSelection()
+        FillSumLabels()
         AddHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
@@ -120,6 +121,8 @@ Public Class ShapeListForm
         BsEquilateral.EndEdit()
         BsVertice.EndEdit()
         Dim shape = GetSelectedShape()
+        GvShape.Refresh()
+        FillSumLabels()
         If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
     End Sub
 
@@ -170,5 +173,19 @@ Public Class ShapeListForm
                 ucShapePainter.PaintShape(shape)
             End If
         End If
+    End Sub
+
+    Private Sub FillSumLabels()
+        Dim area As Decimal
+        Dim perim As Decimal
+        For i = 0 To GvShape.Rows.Count - 1
+            Dim shape = GetShape(i)
+            If shape IsNot Nothing Then
+                area += shape.Area
+                perim += shape.Perimeter
+            End If
+        Next
+        lblTotalArea.Text = Decimal.Round(area, 2)
+        lblTotalPerimeter.Text = Decimal.Round(perim, 2)
     End Sub
 End Class
