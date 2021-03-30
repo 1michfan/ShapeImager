@@ -61,11 +61,19 @@ Public Class ShapeListForm
         End If
         AddHandler TbRadius1.ValueChanged, AddressOf RefreshShape
         AddHandler TbRadius2.ValueChanged, AddressOf RefreshShape
+        RemoveHandler TbSideLength.ValueChanged, AddressOf RefreshShape
+        If shp.ShapeType.BaseType = GetType(Equilateral) Then
+            BsEquilateral.DataSource = shp
+        Else
+            BsEquilateral.Clear()
+        End If
+        AddHandler TbSideLength.ValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub RefreshShape(sender As Object, e As EventArgs)
         BsCenter.EndEdit()
         BsEllipse.EndEdit()
+        BsEquilateral.EndEdit()
         Dim shape = GetSelectedShape()
         If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
     End Sub
