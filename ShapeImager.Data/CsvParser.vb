@@ -16,38 +16,51 @@ Public Class CsvParser
         Dim changeCount As Integer
         Using db As New ShapeDbContext()
             For Each rec In records
-                Dim type As String = rec(0)
-                Select Case type
-                    Case "Polygon"
-                        db.Polygons.Add(CreatePolygon(rec))
-                    Case "Equilateral Triangle"
-                        db.EquilTriangles.Add(CreateEquilTri(rec))
-                    Case "Square"
-                        db.Squares.Add(CreateSquare(rec))
-                    Case "Circle"
-                        db.Circles.Add(CreateCircle(rec))
-                    Case "Ellipse"
-                        db.Ellipses.Add(CreateEllipse(rec))
-                End Select
+                AddRecordAsShape(db, rec)
                 changeCount += db.SaveChanges()
             Next
             Return changeCount > 0
         End Using
     End Function
 
-    Private Function CreateEllipse(rec() As String) As Ellipse
-        Dim ell As New Ellipse(rec(2), rec(4), rec(6), rec(8), rec(10))
-        Return ell
+    Private Shared Function ReadAllRecords(file As TextFieldParser) As List(Of String())
+        Dim records As New List(Of String())
+
+        Do While Not file.EndOfData
+            Try
+                records.Add(file.ReadFields)
+            Catch ex As MalformedLineException
+                Stop
+            End Try
+        Loop
+
+        Return records
     End Function
+
+    Private Sub AddRecordAsShape(db As ShapeDbContext, rec() As String)
+        Dim type As String = rec(0)
+        Select Case type
+            Case "Polygon"
+                db.Polygons.Add(CreatePolygon(rec))
+            Case "Equilateral Triangle"
+                db.EquilTriangles.Add(CreateEquilTri(rec))
+            Case "Square"
+                db.Squares.Add(CreateSquare(rec))
+            Case "Circle"
+                db.Circles.Add(CreateCircle(rec))
+            Case "Ellipse"
+                db.Ellipses.Add(CreateEllipse(rec))
+        End Select
+    End Sub
 
     Private Function CreateCircle(rec() As String) As Circle
         Dim cir As New Circle(rec(2), rec(4), rec(6))
         Return cir
     End Function
 
-    Private Function CreateSquare(rec() As String) As Square
-        Dim sq As New Square(rec(2), rec(4), rec(6), rec(8))
-        Return sq
+    Private Function CreateEllipse(rec() As String) As Ellipse
+        Dim ell As New Ellipse(rec(2), rec(4), rec(6), rec(8), rec(10))
+        Return ell
     End Function
 
     Private Function CreateEquilTri(rec() As String) As EquilTriangle
@@ -68,17 +81,8 @@ Public Class CsvParser
         Return poly
     End Function
 
-    Private Shared Function ReadAllRecords(file As TextFieldParser) As List(Of String())
-        Dim records As New List(Of String())
-
-        Do While Not file.EndOfData
-            Try
-                records.Add(file.ReadFields)
-            Catch ex As MalformedLineException
-                Stop
-            End Try
-        Loop
-
-        Return records
+    Private Function CreateSquare(rec() As String) As Square
+        Dim sq As New Square(rec(2), rec(4), rec(6), rec(8))
+        Return sq
     End Function
 End Class
