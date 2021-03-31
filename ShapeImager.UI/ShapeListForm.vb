@@ -5,6 +5,7 @@ Public Class ShapeListForm
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillData()
+        LoadSelectedShapeProps(Nothing)
     End Sub
 
     Private Sub FillData()
@@ -53,11 +54,13 @@ Public Class ShapeListForm
 
     Private Sub LoadVertice(shp As Shape)
         RemoveHandler GvVertice.CellValueChanged, AddressOf RefreshShape
-        Dim poly As Polygon = TryCast(shp, Polygon)
-        If poly IsNot Nothing Then
+        If shp?.ShapeType = GetType(Polygon) Then
+            Dim poly As Polygon = TryCast(shp, Polygon)
             BsVertice.DataSource = poly.Vertices
+            GvVertice.Visible = True
         Else
             BsVertice.Clear()
+            GvVertice.Visible = False
         End If
         AddHandler GvVertice.CellValueChanged, AddressOf RefreshShape
     End Sub
@@ -98,7 +101,7 @@ Public Class ShapeListForm
     Private Sub LoadCenter(shp As Shape)
         UnsubscribeEdits(TbX)
         UnsubscribeEdits(TbY)
-        If shp.Center Is Nothing Then
+        If shp?.Center Is Nothing Then
             BsCenter.Clear()
             tlpCenter.Visible = False
         Else
