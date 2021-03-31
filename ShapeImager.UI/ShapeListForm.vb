@@ -10,18 +10,31 @@ Public Class ShapeListForm
         _bindingSources.AddRange({BsCenter, BsEllipse, BsEquilateral, BsShape, BsVertice})
     End Sub
 
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        AddHandler gvShape.RowsAdded, AddressOf gvShape_FocusNewRow
+    Private Shared Function PromptUserForShape() As Type
         Dim shapeType As Type
+
         Using frm As New ShapeSelectForm()
             frm.ShowDialog()
             shapeType = frm.SelectedShape
         End Using
+
+        Return shapeType
+    End Function
+
+    Private Sub AddNewShape(shapeType As Type)
+        Dim shape = Activator.CreateInstance(shapeType)
+        shape.Center = New Vertice()
+        _db.Shapes.Add(shape)
+        FillSumLabels()
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        AddHandler gvShape.RowsAdded, AddressOf gvShape_FocusNewRow
+        Dim shapeType As Type
+        shapeType = PromptUserForShape()
+
         If shapeType IsNot Nothing Then
-            Dim shape = Activator.CreateInstance(shapeType)
-            shape.Center = New Vertice()
-            _db.Shapes.Add(shape)
-            FillSumLabels()
+            AddNewShape(shapeType)
         End If
         RemoveHandler gvShape.RowsAdded, AddressOf gvShape_FocusNewRow
     End Sub
@@ -33,29 +46,24 @@ Public Class ShapeListForm
         Else
             Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)", "Delete?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
-                gvShape.ClearSelection()
-                For Each row In rows
-                    gvShape.Rows.Remove(row)
-                Next
-                RefreshShape()
+                DeleteSelectedRows(rows)
             End If
         End If
     End Sub
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
         ClearFirstPrompt()
-        Dim fd As OpenFileDialog = New OpenFileDialog() With {
-            .InitialDirectory = IO.Directory.GetCurrentDirectory(),
-            .Filter = "CSV files (*.csv)|*.csv",
-            .FileName = "ShapeList.csv",
-            .FilterIndex = 2,
-            .RestoreDirectory = False
-        }
-        If fd.ShowDialog = DialogResult.OK Then
-            Dim parser As New CsvParser(fd.FileName)
-            parser.ParseFile()
-            FillData()
-        End If
+        Using fd As OpenFileDialog = New OpenFileDialog() With {
+                .InitialDirectory = IO.Directory.GetCurrentDirectory(),
+                .Filter = "CSV files (*.csv)|*.csv",
+                .FileName = "ShapeList.csv",
+                .FilterIndex = 2,
+                .RestoreDirectory = False
+            }
+            If fd.ShowDialog = DialogResult.OK Then
+                ParseAndRefresh(fd)
+            End If
+        End Using
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
@@ -72,6 +80,14 @@ Public Class ShapeListForm
         End If
     End Sub
 
+    Private Sub DeleteSelectedRows(rows As DataGridViewSelectedRowCollection)
+        gvShape.ClearSelection()
+        For Each row In rows
+            gvShape.Rows.Remove(row)
+        Next
+        RefreshShape()
+    End Sub
+
     Private Sub FillData()
         RemoveHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
         _db.Shapes.Load()
@@ -86,13 +102,7 @@ Public Class ShapeListForm
         Dim perim As Decimal
         Dim count As Integer = gvShape.Rows.Count
 
-        For i = 0 To count - 1
-            Dim shape = GetShape(i)
-            If shape IsNot Nothing Then
-                area += shape.Area
-                perim += shape.Perimeter
-            End If
-        Next
+        SumAreaAndPerim(area, perim, count)
         lblRowCount.Text = count
         lblTotalArea.Text = Decimal.Round(area)
         lblTotalPerimeter.Text = Decimal.Round(perim)
@@ -234,6 +244,12 @@ Public Class ShapeListForm
         AddHandler gvVertice.CellValueChanged, AddressOf RefreshShape
     End Sub
 
+    Private Sub ParseAndRefresh(fd As OpenFileDialog)
+        Dim parser As New CsvParser(fd.FileName)
+        parser.ParseFile()
+        FillData()
+    End Sub
+
     Private Sub RefreshShape()
         For Each bs In _bindingSources
             bs.EndEdit()
@@ -281,6 +297,16 @@ Public Class ShapeListForm
 
     Private Sub SubscribeEdits(tb As NumericUpDown)
         AddHandler tb.ValueChanged, AddressOf RefreshShape
+    End Sub
+
+    Private Sub SumAreaAndPerim(ByRef area As Decimal, ByRef perim As Decimal, count As Integer)
+        For i = 0 To count - 1
+            Dim shape = GetShape(i)
+            If shape IsNot Nothing Then
+                area += shape.Area
+                perim += shape.Perimeter
+            End If
+        Next
     End Sub
 
     Private Sub ToggleButtonEnabled()
