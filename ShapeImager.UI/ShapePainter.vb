@@ -94,20 +94,32 @@ Public Class ShapePainter
     End Sub
 
     Private Sub ShapePainter_PaintGrid(sender As Object, e As PaintEventArgs) Handles Me.Paint
-
-        Dim pen As New Pen(Color.Black)
-        e.Graphics.DrawLine(pen, 0, 0, 0, 500)
-        e.Graphics.DrawLine(pen, 100, 0, 100, 500)
-        e.Graphics.DrawLine(pen, 200, 0, 200, 500)
-        e.Graphics.DrawLine(pen, 300, 0, 300, 500)
-        e.Graphics.DrawLine(pen, 400, 0, 400, 500)
-        e.Graphics.DrawLine(pen, 500, 0, 500, 500)
-        e.Graphics.DrawLine(pen, 0, 0, 500, 0)
-        e.Graphics.DrawLine(pen, 0, 100, 500, 100)
-        e.Graphics.DrawLine(pen, 0, 200, 500, 200)
-        e.Graphics.DrawLine(pen, 0, 300, 500, 300)
-        e.Graphics.DrawLine(pen, 0, 400, 500, 400)
-        e.Graphics.DrawLine(pen, 0, 500, 500, 500)
-
+        Using pen As New Pen(Color.Black)
+            e.Graphics.DrawLine(pen, 0, 0, 0, 500)
+            e.Graphics.DrawLine(pen, 100, 0, 100, 500)
+            e.Graphics.DrawLine(pen, 200, 0, 200, 500)
+            e.Graphics.DrawLine(pen, 300, 0, 300, 500)
+            e.Graphics.DrawLine(pen, 400, 0, 400, 500)
+            e.Graphics.DrawLine(pen, 500, 0, 500, 500)
+            e.Graphics.DrawLine(pen, 0, 0, 500, 0)
+            e.Graphics.DrawLine(pen, 0, 100, 500, 100)
+            e.Graphics.DrawLine(pen, 0, 200, 500, 200)
+            e.Graphics.DrawLine(pen, 0, 300, 500, 300)
+            e.Graphics.DrawLine(pen, 0, 400, 500, 400)
+            e.Graphics.DrawLine(pen, 0, 500, 500, 500)
+        End Using
+        Using brush As New SolidBrush(Color.Black)
+            Dim font As New Font(FontFamily.GenericSansSerif, 8)
+            e.Graphics.DrawString("100", font, brush, 0, 400)
+            e.Graphics.DrawString("200", font, brush, 0, 300)
+            e.Graphics.DrawString("300", font, brush, 0, 200)
+            e.Graphics.DrawString("400", font, brush, 0, 100)
+            e.Graphics.DrawString("500", font, brush, 0, 0)
+            e.Graphics.DrawString("100", font, brush, 79, 487)
+            e.Graphics.DrawString("200", font, brush, 179, 487)
+            e.Graphics.DrawString("300", font, brush, 279, 487)
+            e.Graphics.DrawString("400", font, brush, 379, 487)
+            e.Graphics.DrawString("500", font, brush, 479, 487)
+        End Using
     End Sub
 End Class
