@@ -15,14 +15,6 @@ Public Class ShapeListForm
         FillData()
         LoadSelectedShapeProps(Nothing)
         ToggleButtonEnabled()
-        For Each bs In _bindingSources
-            AddHandler bs.ListChanged, AddressOf BindingSource_ListChanged
-        Next
-    End Sub
-
-    Private Sub BindingSource_ListChanged(ByVal sender As Object, ByVal e As ListChangedEventArgs)
-        ToggleButtonEnabled()
-        FillSumLabels()
     End Sub
 
     Private Sub FillData()
@@ -30,6 +22,7 @@ Public Class ShapeListForm
         _db.Shapes.Load()
         BsShape.DataSource = _db.Shapes.Local.ToBindingList()
         GvShape.ClearSelection()
+        FillSumLabels()
         AddHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
@@ -145,6 +138,7 @@ Public Class ShapeListForm
             bs.EndEdit()
         Next
         GvShape.Refresh()
+        FillSumLabels()
         Dim shape = GetSelectedShape()
         If shape Is Nothing Then
             For Each bs In _bindingSources
@@ -152,6 +146,7 @@ Public Class ShapeListForm
             Next
         End If
         ucShapePainter.PaintShape(shape)
+        ToggleButtonEnabled()
     End Sub
 
     Private Sub ToggleButtonEnabled()
@@ -260,5 +255,6 @@ Public Class ShapeListForm
         GvShape.CurrentCell = GvShape.Rows(e.RowIndex).Cells(0)
         GvShape.Rows(e.RowIndex).Selected = True
         BsShape.EndEdit()
+        btnSaveChanges.Enabled = True
     End Sub
 End Class
