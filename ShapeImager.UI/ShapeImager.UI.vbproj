@@ -161,7 +161,9 @@
     <None Include="ShapeImager.Data.ShapeDbContext.datasource" />
     <None Include="ShapeImager.Data.Square.datasource" />
     <None Include="ShapeImager.Data.Vertice.datasource" />
-    <None Include="ShapeList.csv" />
+    <None Include="ShapeList.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShapeImager.Data\ShapeImager.Data.vbproj">

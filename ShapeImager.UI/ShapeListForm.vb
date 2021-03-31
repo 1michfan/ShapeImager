@@ -28,10 +28,18 @@ Public Class ShapeListForm
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
         'TODO ask user if they want to clear existing data first.
-        Dim filePath As String = "C:\Users\matto\source\repos\ShapeImager\ShapeImager.UI\ShapeList.csv" 'TODO get path from user - verify that it exists and isn't in use
-        Dim parser As New CsvParser(filePath)
-        parser.ParseFile()
-        FillData()
+        Dim fd As OpenFileDialog = New OpenFileDialog() With {
+            .InitialDirectory = IO.Directory.GetCurrentDirectory(),
+            .Filter = "CSV files (*.csv)|*.csv",
+            .FileName = "ShapeList.csv",
+            .FilterIndex = 2,
+            .RestoreDirectory = False
+        }
+        If fd.ShowDialog = DialogResult.OK Then
+            Dim parser As New CsvParser(fd.FileName)
+            parser.ParseFile()
+            FillData()
+        End If
     End Sub
 
     Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
