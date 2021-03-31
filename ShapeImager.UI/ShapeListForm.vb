@@ -10,22 +10,12 @@ Public Class ShapeListForm
         _bindingSources.AddRange({BsCenter, BsEllipse, BsEquilateral, BsShape, BsVertice})
     End Sub
 
-    Private Shared Function PromptUserForShape() As Type
-        Dim shapeType As Type
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
 
-        Using frm As New ShapeSelectForm()
-            frm.ShowDialog()
-            shapeType = frm.SelectedShape
-        End Using
-
-        Return shapeType
-    End Function
-
-    Private Sub AddNewShape(shapeType As Type)
-        Dim shape = Activator.CreateInstance(shapeType)
-        shape.Center = New Vertice()
-        _db.Shapes.Add(shape)
-        FillSumLabels()
+        FillData()
+        LoadSelectedShapeProps(Nothing)
+        ToggleButtonEnabled()
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -68,6 +58,98 @@ Public Class ShapeListForm
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
         SaveChanges()
+    End Sub
+
+    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
+        If e.ColumnIndex = colColor.Index Then
+            Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
+            Dim shp As Shape = row.DataBoundItem
+            If shp IsNot Nothing Then
+                Using cd As New ColorDialog()
+                    cd.ShowDialog()
+                    shp.Color = cd.Color.ToArgb
+                    row.Cells(e.ColumnIndex).Style.BackColor = cd.Color
+                    ucShapePainter.PaintShape(shp)
+                End Using
+            End If
+        End If
+    End Sub
+
+    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gvShape.CellFormatting
+        If e.ColumnIndex = colColor.Index Then
+            Dim shp As Shape = GetShape(e.RowIndex)
+            If shp IsNot Nothing Then
+                Dim color As Color = Color.FromArgb(shp.Color)
+                e.CellStyle.BackColor = color
+                e.CellStyle.ForeColor = color
+                e.CellStyle.SelectionBackColor = color
+                e.CellStyle.SelectionForeColor = color
+            End If
+        End If
+    End Sub
+
+    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
+        If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
+            Dim shape As Shape = GetShape(e.RowIndex)
+            If shape IsNot Nothing Then
+                ucShapePainter.PaintShape(shape)
+            End If
+        End If
+    End Sub
+
+    Private Sub gvShape_FocusNewRow(sender As Object, e As DataGridViewRowsAddedEventArgs)
+        gvShape.ClearSelection()
+        gvShape.CurrentCell = gvShape.Rows(e.RowIndex).Cells(0)
+        gvShape.Rows(e.RowIndex).Selected = True
+        BsShape.EndEdit()
+        btnSaveChanges.Enabled = True
+    End Sub
+
+    Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
+        Dim count As Integer = gvShape.SelectedRows.Count
+
+        If count = 1 Then
+            Dim shp As Shape = GetSelectedShape()
+            If shp IsNot Nothing Then
+                LoadSelectedShapeProps(shp)
+                ucShapePainter.PaintShape(shp)
+            End If
+        End If
+        btnDelete.Enabled = count > 0
+    End Sub
+
+    Private Sub RefreshShape(sender As Object, e As EventArgs)
+        RefreshShape()
+    End Sub
+
+    Private Sub ShapeListForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If _db.ChangeTracker.HasChanges Then
+            Dim res As DialogResult = MessageBox.Show("You have unsaved changes. Do you wish to save them before closing?", "Save Changes", MessageBoxButtons.YesNoCancel)
+            Select Case res
+                Case DialogResult.Cancel
+                    e.Cancel = True
+                Case DialogResult.Yes
+                    SaveChanges()
+            End Select
+        End If
+    End Sub
+
+    Private Shared Function PromptUserForShape() As Type
+        Dim shapeType As Type
+
+        Using frm As New ShapeSelectForm()
+            frm.ShowDialog()
+            shapeType = frm.SelectedShape
+        End Using
+
+        Return shapeType
+    End Function
+
+    Private Sub AddNewShape(shapeType As Type)
+        Dim shape = Activator.CreateInstance(shapeType)
+        shape.Center = New Vertice()
+        _db.Shapes.Add(shape)
+        FillSumLabels()
     End Sub
 
     Private Sub ClearFirstPrompt()
@@ -128,61 +210,6 @@ Public Class ShapeListForm
         Dim shp As Shape = row.DataBoundItem
         Return shp
     End Function
-
-    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
-        If e.ColumnIndex = colColor.Index Then
-            Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
-            Dim shp As Shape = row.DataBoundItem
-            If shp IsNot Nothing Then
-                Using cd As New ColorDialog()
-                    cd.ShowDialog()
-                    shp.Color = cd.Color.ToArgb
-                    row.Cells(e.ColumnIndex).Style.BackColor = cd.Color
-                    ucShapePainter.PaintShape(shp)
-                End Using
-            End If
-        End If
-    End Sub
-
-    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gvShape.CellFormatting
-        If e.ColumnIndex = colColor.Index Then
-            Dim shp As Shape = GetShape(e.RowIndex)
-            If shp IsNot Nothing Then
-                Dim color As Color = Color.FromArgb(shp.Color)
-                e.CellStyle.BackColor = color
-                e.CellStyle.ForeColor = color
-                e.CellStyle.SelectionBackColor = color
-                e.CellStyle.SelectionForeColor = color
-            End If
-        End If
-    End Sub
-
-    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
-        If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
-            Dim shape As Shape = GetShape(e.RowIndex)
-            If shape IsNot Nothing Then
-                ucShapePainter.PaintShape(shape)
-            End If
-        End If
-    End Sub
-
-    Private Sub gvShape_FocusNewRow(sender As Object, e As DataGridViewRowsAddedEventArgs)
-        gvShape.ClearSelection()
-        gvShape.CurrentCell = gvShape.Rows(e.RowIndex).Cells(0)
-        gvShape.Rows(e.RowIndex).Selected = True
-        BsShape.EndEdit()
-        btnSaveChanges.Enabled = True
-    End Sub
-
-    Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
-        If gvShape.SelectedRows.Count = 1 Then
-            Dim shp As Shape = GetSelectedShape()
-            If shp IsNot Nothing Then
-                LoadSelectedShapeProps(shp)
-                ucShapePainter.PaintShape(shp)
-            End If
-        End If
-    End Sub
 
     Private Sub LoadCenter(shp As Shape)
         UnsubscribeEdits(tbX)
@@ -266,32 +293,10 @@ Public Class ShapeListForm
         ToggleButtonEnabled()
     End Sub
 
-    Private Sub RefreshShape(sender As Object, e As EventArgs)
-        RefreshShape()
-    End Sub
-
     Private Sub SaveChanges()
         BsShape.EndEdit()
         _db.SaveChanges()
         gvShape.Refresh()
-        ToggleButtonEnabled()
-    End Sub
-
-    Private Sub ShapeListForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If _db.ChangeTracker.HasChanges Then
-            Dim res As DialogResult = MessageBox.Show("You have unsaved changes. Do you wish to save them before closing?", "Save Changes", MessageBoxButtons.YesNoCancel)
-            Select Case res
-                Case DialogResult.Cancel
-                    e.Cancel = True
-                Case DialogResult.Yes
-                    SaveChanges()
-            End Select
-        End If
-    End Sub
-
-    Private Sub ShapeListForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        FillData()
-        LoadSelectedShapeProps(Nothing)
         ToggleButtonEnabled()
     End Sub
 
