@@ -178,7 +178,6 @@ Public Class ShapeListForm
         UnsubscribeEdits(TbX)
         UnsubscribeEdits(TbY)
         If shp?.Center Is Nothing Then
-            BsCenter.Clear()
             tlpCenter.Visible = False
         Else
             BsCenter.DataSource = shp.Center
@@ -196,10 +195,7 @@ Public Class ShapeListForm
             BsEllipse.DataSource = ell
             tlpRadius1.Visible = True
             tlpRadius2.Visible = (shp.ShapeType = GetType(Ellipse))
-            TbRadius1.Value = ell.Radius1
-            TbRadius2.Value = ell.Radius2
         Else
-            BsEllipse.Clear()
             tlpRadius1.Visible = False
             tlpRadius2.Visible = False
         End If
@@ -212,10 +208,8 @@ Public Class ShapeListForm
         Dim eq As Equilateral = TryCast(shp, Equilateral)
         If eq IsNot Nothing Then
             BsEquilateral.DataSource = eq
-            TbSideLength.Value = eq.SideLength
             tlpEquil.Visible = True
         Else
-            BsEquilateral.Clear()
             tlpEquil.Visible = False
         End If
         AddHandler TbSideLength.ValueChanged, AddressOf RefreshShape
@@ -235,7 +229,6 @@ Public Class ShapeListForm
             BsVertice.DataSource = poly.Vertices
             GvVertice.Visible = True
         Else
-            BsVertice.Clear()
             GvVertice.Visible = False
         End If
         AddHandler GvVertice.CellValueChanged, AddressOf RefreshShape
