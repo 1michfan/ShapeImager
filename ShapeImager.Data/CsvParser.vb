@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.FileIO
 
 Public Class CsvParser
-    Dim _path As String
+    ReadOnly _path As String
 
     Public Sub New(csvPath As String)
         _path = csvPath
@@ -13,6 +13,7 @@ Public Class CsvParser
         file.Delimiters = New String() {","}
         Dim records As List(Of String()) = ReadAllRecords(file)
 
+        Dim changeCount As Integer
         Using db As New ShapeDbContext()
             For Each rec In records
                 Dim type As String = rec(0)
@@ -28,8 +29,9 @@ Public Class CsvParser
                     Case "Ellipse"
                         db.Ellipses.Add(CreateEllipse(rec))
                 End Select
+                changeCount += db.SaveChanges()
             Next
-            Return db.SaveChanges() > 0
+            Return changeCount > 0
         End Using
     End Function
 
