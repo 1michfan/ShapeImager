@@ -63,8 +63,10 @@ Public Class ShapeListForm
 
     Private Sub LoadEquilateral(shp As Shape)
         RemoveHandler TbSideLength.ValueChanged, AddressOf RefreshShape
-        If shp.ShapeType.BaseType = GetType(Equilateral) Then
-            BsEquilateral.DataSource = shp
+        Dim eq As Equilateral = TryCast(shp, Equilateral)
+        If eq IsNot Nothing Then
+            BsEquilateral.DataSource = eq
+            TbSideLength.Value = eq.SideLength
             tlpEquil.Visible = True
         Else
             BsEquilateral.Clear()
@@ -76,10 +78,13 @@ Public Class ShapeListForm
     Private Sub LoadEllipse(shp As Shape)
         UnsubscribeEdits(TbRadius1)
         UnsubscribeEdits(TbRadius2)
-        If shp.ShapeType = GetType(Ellipse) Or shp.ShapeType = GetType(Circle) Then
-            BsEllipse.DataSource = shp
+        Dim ell As Ellipse = TryCast(shp, Ellipse)
+        If ell IsNot Nothing Then
+            BsEllipse.DataSource = ell
             tlpRadius1.Visible = True
             tlpRadius2.Visible = (shp.ShapeType = GetType(Ellipse))
+            TbRadius1.Value = ell.Radius1
+            TbRadius2.Value = ell.Radius2
         Else
             BsEllipse.Clear()
             tlpRadius1.Visible = False
