@@ -1,11 +1,27 @@
 ﻿Imports System.Data.Entity
 Imports ShapeImager.Data
+Imports System.ComponentModel
+
 Public Class ShapeListForm
     ReadOnly _db As New ShapeDbContext()
+    Dim _bindingSources As New List(Of BindingSource)
+
+    Public Sub New()
+        InitializeComponent()
+        _bindingSources.AddRange({BsCenter, BsEllipse, BsEquilateral, BsShape, BsVertice})
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillData()
         LoadSelectedShapeProps(Nothing)
+        ToggleButtonEnabled()
+        For Each bs In _bindingSources
+            AddHandler bs.ListChanged, AddressOf BindingSource_ListChanged
+        Next
+    End Sub
+
+    Private Sub BindingSource_ListChanged(ByVal sender As Object, ByVal e As ListChangedEventArgs)
+        ToggleButtonEnabled()
     End Sub
 
     Private Sub FillData()
@@ -125,26 +141,30 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub RefreshShape()
-        BsCenter.EndEdit()
-        BsEllipse.EndEdit()
-        BsEquilateral.EndEdit()
-        BsVertice.EndEdit()
+        For Each bs In _bindingSources
+            bs.EndEdit()
+        Next
         GvShape.Refresh()
         FillSumLabels()
         Dim shape = GetSelectedShape()
         If shape Is Nothing Then
-            BsCenter.Clear()
-            BsEllipse.Clear()
-            BsEquilateral.Clear()
-            BsVertice.Clear()
+            For Each bs In _bindingSources
+                bs.Clear()
+            Next
         End If
         ucShapePainter.PaintShape(shape)
+    End Sub
+
+    Private Sub ToggleButtonEnabled()
+        Dim hasChanges = _db.ChangeTracker.HasChanges()
+        btnSaveChanges.Enabled = hasChanges
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
         BsShape.EndEdit()
         _db.SaveChanges()
         GvShape.Refresh()
+        ToggleButtonEnabled()
     End Sub
 
     Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GvShape.CellFormatting
