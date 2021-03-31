@@ -12,6 +12,10 @@ Public Class ShapeDbContext
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
         MyBase.OnModelCreating(modelBuilder)
+        modelBuilder.Entity(Of Polygon)() _
+            .HasOptional(Function(s) s.Center) _
+            .WithOptionalPrincipal(Function(s) s.Polygon) _
+            .WillCascadeOnDelete(True)
     End Sub
 
     Public Overridable Property Circles As DbSet(Of Circle)
