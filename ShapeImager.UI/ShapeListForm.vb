@@ -51,7 +51,12 @@ Public Class ShapeListForm
                 .RestoreDirectory = False
             }
             If fd.ShowDialog = DialogResult.OK Then
-                ParseAndRefresh(fd)
+                Dim file As New IO.FileInfo(fd.FileName)
+                If file.Extension = ".csv" Then
+                    ParseAndRefresh(fd)
+                Else
+                    MessageBox.Show("Invalid File Extension. Please choose a .csv file.")
+                End If
             End If
         End Using
     End Sub
