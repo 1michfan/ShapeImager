@@ -1,4 +1,5 @@
 ﻿Imports ShapeImager.Data
+
 Public Class ShapeSelectForm
     Public SelectedShape As Type
     Dim _types As New List(Of Type) From {GetType(Circle), GetType(Ellipse), GetType(EquilTriangle), GetType(Polygon), GetType(Square)}
