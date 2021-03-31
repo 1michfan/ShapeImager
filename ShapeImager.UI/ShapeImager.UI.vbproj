@@ -119,6 +119,7 @@
     <Compile Include="ShapeSelectForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WaitCursor.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

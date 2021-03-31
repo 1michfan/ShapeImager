@@ -34,9 +34,11 @@ Public Class ShapeListForm
         If rows.Count = 0 Then
             MessageBox.Show("You must select a row first")
         Else
-            Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)", "Delete?", MessageBoxButtons.YesNo)
+            Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)?", "Delete?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
-                DeleteSelectedRows(rows)
+                Using wc As New WaitCursor()
+                    DeleteSelectedRows(rows)
+                End Using
             End If
         End If
     End Sub
@@ -62,7 +64,9 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
-        SaveChanges()
+        Using wc As New WaitCursor()
+            SaveChanges()
+        End Using
     End Sub
 
     Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
@@ -277,9 +281,11 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub ParseAndRefresh(fd As OpenFileDialog)
-        Dim parser As New CsvParser(fd.FileName)
-        parser.ParseFile()
-        FillData()
+        Using wc As New WaitCursor()
+            Dim parser As New CsvParser(fd.FileName)
+            parser.ParseFile()
+            FillData()
+        End Using
     End Sub
 
     Private Sub RefreshShape()
