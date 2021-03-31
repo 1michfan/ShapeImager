@@ -22,6 +22,7 @@ Public Class ShapeListForm
 
     Private Sub BindingSource_ListChanged(ByVal sender As Object, ByVal e As ListChangedEventArgs)
         ToggleButtonEnabled()
+        FillSumLabels()
     End Sub
 
     Private Sub FillData()
@@ -29,7 +30,6 @@ Public Class ShapeListForm
         _db.Shapes.Load()
         BsShape.DataSource = _db.Shapes.Local.ToBindingList()
         GvShape.ClearSelection()
-        FillSumLabels()
         AddHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
@@ -145,7 +145,6 @@ Public Class ShapeListForm
             bs.EndEdit()
         Next
         GvShape.Refresh()
-        FillSumLabels()
         Dim shape = GetSelectedShape()
         If shape Is Nothing Then
             For Each bs In _bindingSources
