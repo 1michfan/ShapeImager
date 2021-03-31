@@ -21,6 +21,7 @@ Public Class ShapeListForm
             Dim shape = Activator.CreateInstance(shapeType)
             shape.Center = New Vertice()
             _db.Shapes.Add(shape)
+            FillSumLabels()
         End If
         RemoveHandler GvShape.RowsAdded, AddressOf GvShape_FocusNewRow
     End Sub
@@ -83,15 +84,22 @@ Public Class ShapeListForm
     Private Sub FillSumLabels()
         Dim area As Decimal
         Dim perim As Decimal
-        For i = 0 To GvShape.Rows.Count - 1
+        Dim count As Integer = GvShape.Rows.Count
+
+        For i = 0 To count - 1
             Dim shape = GetShape(i)
             If shape IsNot Nothing Then
                 area += shape.Area
                 perim += shape.Perimeter
             End If
         Next
-        lblTotalArea.Text = Decimal.Round(area, 2)
-        lblTotalPerimeter.Text = Decimal.Round(perim, 2)
+        lblRowCount.Text = count
+        lblTotalArea.Text = Decimal.Round(area)
+        lblTotalPerimeter.Text = Decimal.Round(perim)
+        Dim avgArea As Decimal = If(count = 0, 0, area / count)
+        Dim avgPerim As Decimal = If(count = 0, 0, perim / count)
+        lblAvgArea.Text = Decimal.Round(avgArea)
+        lblAvgPerim.Text = Decimal.Round(avgPerim)
     End Sub
 
     Private Function GetSelectedShape() As Shape

@@ -8,9 +8,10 @@ Public Class CsvParser
     End Sub
 
     Public Function ParseFile() As Boolean
-        Dim file As New TextFieldParser(_path)
-        file.TextFieldType = FieldType.Delimited
-        file.Delimiters = New String() {","}
+        Dim file As New TextFieldParser(_path) With {
+            .TextFieldType = FieldType.Delimited,
+            .Delimiters = New String() {","}
+        }
         Dim records As List(Of String()) = ReadAllRecords(file)
 
         Dim changeCount As Integer
