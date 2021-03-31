@@ -197,7 +197,7 @@ Partial Class ShapeListForm
         Me.gvShape.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.gvShape.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gvShape.Size = New System.Drawing.Size(503, 249)
-        Me.gvShape.TabIndex = 1
+        Me.gvShape.TabIndex = 0
         '
         'ShapeType
         '
@@ -304,7 +304,7 @@ Partial Class ShapeListForm
         Me.btnDelete.Location = New System.Drawing.Point(191, 3)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(93, 23)
-        Me.btnDelete.TabIndex = 6
+        Me.btnDelete.TabIndex = 2
         Me.btnDelete.Text = "Delete Selected"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
@@ -313,7 +313,7 @@ Partial Class ShapeListForm
         Me.btnAdd.Location = New System.Drawing.Point(290, 3)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.btnAdd.TabIndex = 7
+        Me.btnAdd.TabIndex = 3
         Me.btnAdd.Text = "Add New"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
@@ -392,7 +392,7 @@ Partial Class ShapeListForm
         Me.tbX.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.tbX.Name = "tbX"
         Me.tbX.Size = New System.Drawing.Size(117, 20)
-        Me.tbX.TabIndex = 5
+        Me.tbX.TabIndex = 0
         '
         'BsCenter
         '
@@ -418,7 +418,7 @@ Partial Class ShapeListForm
         Me.tbY.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.tbY.Name = "tbY"
         Me.tbY.Size = New System.Drawing.Size(117, 20)
-        Me.tbY.TabIndex = 6
+        Me.tbY.TabIndex = 1
         '
         'tlpRadius1
         '
@@ -444,7 +444,7 @@ Partial Class ShapeListForm
         Me.tbRadius1.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.tbRadius1.Name = "tbRadius1"
         Me.tbRadius1.Size = New System.Drawing.Size(117, 20)
-        Me.tbRadius1.TabIndex = 7
+        Me.tbRadius1.TabIndex = 0
         '
         'BsEllipse
         '
@@ -474,7 +474,7 @@ Partial Class ShapeListForm
         Me.tbRadius2.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.tbRadius2.Name = "tbRadius2"
         Me.tbRadius2.Size = New System.Drawing.Size(117, 20)
-        Me.tbRadius2.TabIndex = 8
+        Me.tbRadius2.TabIndex = 0
         '
         'tlpEquil
         '
@@ -503,7 +503,7 @@ Partial Class ShapeListForm
         Me.tbSideLength.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         Me.tbSideLength.Name = "tbSideLength"
         Me.tbSideLength.Size = New System.Drawing.Size(117, 20)
-        Me.tbSideLength.TabIndex = 10
+        Me.tbSideLength.TabIndex = 0
         '
         'BsEquilateral
         '
@@ -520,7 +520,7 @@ Partial Class ShapeListForm
         Me.gvVertice.Name = "gvVertice"
         Me.gvVertice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gvVertice.Size = New System.Drawing.Size(246, 244)
-        Me.gvVertice.TabIndex = 2
+        Me.gvVertice.TabIndex = 0
         '
         'IdDataGridViewTextBoxColumn1
         '
