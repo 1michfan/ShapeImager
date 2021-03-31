@@ -27,7 +27,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub btnImportCsv_Click(sender As Object, e As EventArgs) Handles btnImportCsv.Click
-        'TODO ask user if they want to clear existing data first.
+        ClearFirstPrompt()
         Dim fd As OpenFileDialog = New OpenFileDialog() With {
             .InitialDirectory = IO.Directory.GetCurrentDirectory(),
             .Filter = "CSV files (*.csv)|*.csv",
@@ -39,6 +39,16 @@ Public Class ShapeListForm
             Dim parser As New CsvParser(fd.FileName)
             parser.ParseFile()
             FillData()
+        End If
+    End Sub
+
+    Private Sub ClearFirstPrompt()
+        If GvShape.Rows.Count > 0 Then
+            Dim res As DialogResult = MessageBox.Show("Do you wish to clear existing data first?", "Clear Data?", MessageBoxButtons.YesNo)
+            If res = DialogResult.Yes Then
+                GvShape.Rows.Clear()
+                RefreshShape()
+            End If
         End If
     End Sub
 
@@ -163,6 +173,10 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
+        SaveChanges()
+    End Sub
+
+    Private Sub SaveChanges()
         BsShape.EndEdit()
         _db.SaveChanges()
         GvShape.Refresh()
