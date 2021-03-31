@@ -35,6 +35,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Function GetSelectedShape() As Shape
+        If GvShape.SelectedRows.Count = 0 Then Return Nothing
         Dim row As DataGridViewRow = GvShape.SelectedRows().Item(0)
         If row Is Nothing Then
             Return Nothing
@@ -128,7 +129,13 @@ Public Class ShapeListForm
         GvShape.Refresh()
         FillSumLabels()
         Dim shape = GetSelectedShape()
-        If shape IsNot Nothing Then ucShapePainter.PaintShape(shape)
+        If shape Is Nothing Then
+            BsCenter.Clear()
+            BsEllipse.Clear()
+            BsEquilateral.Clear()
+            BsVertice.Clear()
+        End If
+        ucShapePainter.PaintShape(shape)
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
@@ -202,9 +209,11 @@ Public Class ShapeListForm
         Else
             Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)", "Delete?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
+                GvShape.ClearSelection()
                 For Each row In rows
                     GvShape.Rows.Remove(row)
                 Next
+                RefreshShape()
             End If
         End If
     End Sub
