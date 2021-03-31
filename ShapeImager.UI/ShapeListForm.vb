@@ -279,4 +279,16 @@ Public Class ShapeListForm
         BsShape.EndEdit()
         btnSaveChanges.Enabled = True
     End Sub
+
+    Private Sub ShapeListForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If _db.ChangeTracker.HasChanges Then
+            Dim res As DialogResult = MessageBox.Show("You have unsaved changes. Do you wish to save them before closing?", "Save Changes", MessageBoxButtons.YesNoCancel)
+            Select Case res
+                Case DialogResult.Cancel
+                    e.Cancel = True
+                Case DialogResult.Yes
+                    SaveChanges()
+            End Select
+        End If
+    End Sub
 End Class
