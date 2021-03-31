@@ -15,7 +15,7 @@ Public Class ShapeListForm
 
         FillData()
         LoadSelectedShapeProps(Nothing)
-        ToggleButtonEnabled()
+        btnSave_ToggleEnabled()
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
@@ -36,7 +36,7 @@ Public Class ShapeListForm
         Else
             Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)?", "Delete?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
-                Using wc As New WaitCursor()
+                Using New WaitCursor()
                     DeleteSelectedRows(rows)
                 End Using
             End If
@@ -64,7 +64,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub btnSaveChanges_Click(sender As Object, e As EventArgs) Handles btnSaveChanges.Click
-        Using wc As New WaitCursor()
+        Using New WaitCursor()
             SaveChanges()
         End Using
     End Sub
@@ -99,10 +99,7 @@ Public Class ShapeListForm
 
     Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
         If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
-            Dim shape As Shape = GetShape(e.RowIndex)
-            If shape IsNot Nothing Then
-                ucShapePainter.PaintShape(shape)
-            End If
+            RefreshShape()
         End If
     End Sub
 
@@ -159,6 +156,11 @@ Public Class ShapeListForm
         shape.Center = New Vertice()
         _db.Shapes.Add(shape)
         FillSumLabels()
+    End Sub
+
+    Private Sub btnSave_ToggleEnabled()
+        Dim hasChanges = _db.ChangeTracker.HasChanges()
+        btnSaveChanges.Enabled = hasChanges
     End Sub
 
     Private Sub ClearFirstPrompt()
@@ -281,7 +283,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub ParseAndRefresh(fd As OpenFileDialog)
-        Using wc As New WaitCursor()
+        Using New WaitCursor()
             Dim parser As New CsvParser(fd.FileName)
             parser.ParseFile()
             FillData()
@@ -301,14 +303,14 @@ Public Class ShapeListForm
             Next
         End If
         ucShapePainter.PaintShape(shape)
-        ToggleButtonEnabled()
+        btnSave_ToggleEnabled()
     End Sub
 
     Private Sub SaveChanges()
         BsShape.EndEdit()
         _db.SaveChanges()
         gvShape.Refresh()
-        ToggleButtonEnabled()
+        btnSave_ToggleEnabled()
     End Sub
 
     Private Sub SubscribeEdits(tb As NumericUpDown)
@@ -323,11 +325,6 @@ Public Class ShapeListForm
                 perim += shape.Perimeter
             End If
         Next
-    End Sub
-
-    Private Sub ToggleButtonEnabled()
-        Dim hasChanges = _db.ChangeTracker.HasChanges()
-        btnSaveChanges.Enabled = hasChanges
     End Sub
 
     Private Sub UnsubscribeEdits(tb As NumericUpDown)
