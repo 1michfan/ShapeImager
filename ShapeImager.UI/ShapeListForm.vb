@@ -11,7 +11,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        AddHandler GvShape.RowsAdded, AddressOf GvShape_FocusNewRow
+        AddHandler gvShape.RowsAdded, AddressOf gvShape_FocusNewRow
         Dim shapeType As Type
         Using frm As New ShapeSelectForm()
             frm.ShowDialog()
@@ -23,19 +23,19 @@ Public Class ShapeListForm
             _db.Shapes.Add(shape)
             FillSumLabels()
         End If
-        RemoveHandler GvShape.RowsAdded, AddressOf GvShape_FocusNewRow
+        RemoveHandler gvShape.RowsAdded, AddressOf gvShape_FocusNewRow
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        Dim rows = GvShape.SelectedRows
+        Dim rows = gvShape.SelectedRows
         If rows.Count = 0 Then
             MessageBox.Show("You must select a row first")
         Else
             Dim res As DialogResult = MessageBox.Show("Are you sure you wish to the selected row(s)", "Delete?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
-                GvShape.ClearSelection()
+                gvShape.ClearSelection()
                 For Each row In rows
-                    GvShape.Rows.Remove(row)
+                    gvShape.Rows.Remove(row)
                 Next
                 RefreshShape()
             End If
@@ -63,28 +63,28 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub ClearFirstPrompt()
-        If GvShape.Rows.Count > 0 Then
+        If gvShape.Rows.Count > 0 Then
             Dim res As DialogResult = MessageBox.Show("Do you wish to clear existing data first?", "Clear Data?", MessageBoxButtons.YesNo)
             If res = DialogResult.Yes Then
-                GvShape.Rows.Clear()
+                gvShape.Rows.Clear()
                 RefreshShape()
             End If
         End If
     End Sub
 
     Private Sub FillData()
-        RemoveHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
+        RemoveHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
         _db.Shapes.Load()
         BsShape.DataSource = _db.Shapes.Local.ToBindingList()
-        GvShape.ClearSelection()
+        gvShape.ClearSelection()
         FillSumLabels()
-        AddHandler GvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
+        AddHandler gvShape.SelectionChanged, AddressOf gvShape_SelectionChanged
     End Sub
 
     Private Sub FillSumLabels()
         Dim area As Decimal
         Dim perim As Decimal
-        Dim count As Integer = GvShape.Rows.Count
+        Dim count As Integer = gvShape.Rows.Count
 
         For i = 0 To count - 1
             Dim shape = GetShape(i)
@@ -103,8 +103,8 @@ Public Class ShapeListForm
     End Sub
 
     Private Function GetSelectedShape() As Shape
-        If GvShape.SelectedRows.Count = 0 Then Return Nothing
-        Dim row As DataGridViewRow = GvShape.SelectedRows().Item(0)
+        If gvShape.SelectedRows.Count = 0 Then Return Nothing
+        Dim row As DataGridViewRow = gvShape.SelectedRows().Item(0)
         If row Is Nothing Then
             Return Nothing
         Else
@@ -114,14 +114,14 @@ Public Class ShapeListForm
 
     Private Function GetShape(index As Integer) As Shape
         If index < 0 Then Return Nothing
-        Dim row As DataGridViewRow = GvShape.Rows(index)
+        Dim row As DataGridViewRow = gvShape.Rows(index)
         Dim shp As Shape = row.DataBoundItem
         Return shp
     End Function
 
-    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles GvShape.CellClick
+    Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
         If e.ColumnIndex = colColor.Index Then
-            Dim row As DataGridViewRow = GvShape.Rows(e.RowIndex)
+            Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
             Dim shp As Shape = row.DataBoundItem
             If shp IsNot Nothing Then
                 Using cd As New ColorDialog()
@@ -134,7 +134,7 @@ Public Class ShapeListForm
         End If
     End Sub
 
-    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles GvShape.CellFormatting
+    Private Sub gvShape_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gvShape.CellFormatting
         If e.ColumnIndex = colColor.Index Then
             Dim shp As Shape = GetShape(e.RowIndex)
             If shp IsNot Nothing Then
@@ -147,7 +147,7 @@ Public Class ShapeListForm
         End If
     End Sub
 
-    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles GvShape.CellValueChanged
+    Private Sub gvShape_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellValueChanged
         If e.ColumnIndex = colDegrees.Index Or e.ColumnIndex = colOrientation.Index Then
             Dim shape As Shape = GetShape(e.RowIndex)
             If shape IsNot Nothing Then
@@ -157,15 +157,15 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub gvShape_FocusNewRow(sender As Object, e As DataGridViewRowsAddedEventArgs)
-        GvShape.ClearSelection()
-        GvShape.CurrentCell = GvShape.Rows(e.RowIndex).Cells(0)
-        GvShape.Rows(e.RowIndex).Selected = True
+        gvShape.ClearSelection()
+        gvShape.CurrentCell = gvShape.Rows(e.RowIndex).Cells(0)
+        gvShape.Rows(e.RowIndex).Selected = True
         BsShape.EndEdit()
         btnSaveChanges.Enabled = True
     End Sub
 
     Private Sub gvShape_SelectionChanged(sender As Object, e As EventArgs)
-        If GvShape.SelectedRows.Count = 1 Then
+        If gvShape.SelectedRows.Count = 1 Then
             Dim shp As Shape = GetSelectedShape()
             If shp IsNot Nothing Then
                 LoadSelectedShapeProps(shp)
@@ -175,21 +175,21 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub LoadCenter(shp As Shape)
-        UnsubscribeEdits(TbX)
-        UnsubscribeEdits(TbY)
+        UnsubscribeEdits(tbX)
+        UnsubscribeEdits(tbY)
         If shp?.Center Is Nothing Then
             tlpCenter.Visible = False
         Else
             BsCenter.DataSource = shp.Center
             tlpCenter.Visible = True
         End If
-        SubscribeEdits(TbX)
-        SubscribeEdits(TbY)
+        SubscribeEdits(tbX)
+        SubscribeEdits(tbY)
     End Sub
 
     Private Sub LoadEllipse(shp As Shape)
-        UnsubscribeEdits(TbRadius1)
-        UnsubscribeEdits(TbRadius2)
+        UnsubscribeEdits(tbRadius1)
+        UnsubscribeEdits(tbRadius2)
         Dim ell As Ellipse = TryCast(shp, Ellipse)
         If ell IsNot Nothing Then
             BsEllipse.DataSource = ell
@@ -199,12 +199,12 @@ Public Class ShapeListForm
             tlpRadius1.Visible = False
             tlpRadius2.Visible = False
         End If
-        SubscribeEdits(TbRadius1)
-        SubscribeEdits(TbRadius2)
+        SubscribeEdits(tbRadius1)
+        SubscribeEdits(tbRadius2)
     End Sub
 
     Private Sub LoadEquilateral(shp As Shape)
-        RemoveHandler TbSideLength.ValueChanged, AddressOf RefreshShape
+        RemoveHandler tbSideLength.ValueChanged, AddressOf RefreshShape
         Dim eq As Equilateral = TryCast(shp, Equilateral)
         If eq IsNot Nothing Then
             BsEquilateral.DataSource = eq
@@ -212,7 +212,7 @@ Public Class ShapeListForm
         Else
             tlpEquil.Visible = False
         End If
-        AddHandler TbSideLength.ValueChanged, AddressOf RefreshShape
+        AddHandler tbSideLength.ValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub LoadSelectedShapeProps(shp As Shape)
@@ -223,22 +223,22 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub LoadVertice(shp As Shape)
-        RemoveHandler GvVertice.CellValueChanged, AddressOf RefreshShape
+        RemoveHandler gvVertice.CellValueChanged, AddressOf RefreshShape
         If shp?.ShapeType = GetType(Polygon) Then
             Dim poly As Polygon = TryCast(shp, Polygon)
             BsVertice.DataSource = poly.Vertices
-            GvVertice.Visible = True
+            gvVertice.Visible = True
         Else
-            GvVertice.Visible = False
+            gvVertice.Visible = False
         End If
-        AddHandler GvVertice.CellValueChanged, AddressOf RefreshShape
+        AddHandler gvVertice.CellValueChanged, AddressOf RefreshShape
     End Sub
 
     Private Sub RefreshShape()
         For Each bs In _bindingSources
             bs.EndEdit()
         Next
-        GvShape.Refresh()
+        gvShape.Refresh()
         FillSumLabels()
         Dim shape = GetSelectedShape()
         If shape Is Nothing Then
@@ -257,7 +257,7 @@ Public Class ShapeListForm
     Private Sub SaveChanges()
         BsShape.EndEdit()
         _db.SaveChanges()
-        GvShape.Refresh()
+        gvShape.Refresh()
         ToggleButtonEnabled()
     End Sub
 
