@@ -70,7 +70,7 @@ Public Class ShapeListForm
     End Sub
 
     Private Sub gvShape_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gvShape.CellClick
-        If e.ColumnIndex = colColor.Index Then
+        If e.ColumnIndex = colColor.Index And e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = gvShape.Rows(e.RowIndex)
             Dim shp As Shape = row.DataBoundItem
             If shp IsNot Nothing Then
