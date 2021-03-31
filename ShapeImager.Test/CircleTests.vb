@@ -17,4 +17,12 @@
         Assert.AreEqual(circle.Radius1, circle.Radius2)
     End Sub
 
+    <TestMethod()>
+    Public Sub TestArea()
+        Dim circle As New Circle(0, 0, 1)
+        Dim area = Decimal.Round(circle.Area, 2)
+        Dim exp As Decimal = 3.14
+        Assert.AreEqual(exp, area)
+    End Sub
+
 End Class
