@@ -96,6 +96,8 @@
     </Compile>
     <Compile Include="EllipseTests.vb" />
     <Compile Include="EquilTriamgleTests.vb" />
+    <Compile Include="PolygonTests.vb" />
+    <Compile Include="SquareTests.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
