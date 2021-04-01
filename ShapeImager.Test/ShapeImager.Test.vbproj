@@ -95,7 +95,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="EllipseTests.vb" />
-    <Compile Include="EquilTriamgleTests.vb" />
+    <Compile Include="EquilTriangleTests.vb" />
     <Compile Include="PolygonTests.vb" />
     <Compile Include="SquareTests.vb" />
   </ItemGroup>

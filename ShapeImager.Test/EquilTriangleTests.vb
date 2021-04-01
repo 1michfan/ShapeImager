@@ -1,7 +1,7 @@
 ﻿Imports ShapeImager.Data
 
 <TestClass()>
-Public Class EquilTriamgleTests
+Public Class EquilTriangleTests
 
     <TestMethod()>
     Public Sub TestArea()
