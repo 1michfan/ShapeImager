@@ -56,7 +56,7 @@ Public Class ShapePainter
         e.Graphics.FillPolygon(brush, points)
     End Sub
 
-    Private Function GetCenter() As Vertice
+    Private Function GetCenter() As Vertex
         Dim center = _shape.Center
         If center Is Nothing Then
             Dim poly = TryCast(_shape, Polygon)
@@ -67,7 +67,7 @@ Public Class ShapePainter
     End Function
 
     Private Sub RotateShape(e As PaintEventArgs)
-        Dim center As Vertice = GetCenter()
+        Dim center As Vertex = GetCenter()
         e.Graphics.TranslateTransform(center.X, center.Y)
         e.Graphics.RotateTransform(_shape.Degrees)
         e.Graphics.TranslateTransform(-center.X, -center.Y)

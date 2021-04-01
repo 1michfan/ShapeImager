@@ -83,7 +83,7 @@
     <Compile Include="Models\Polygon.vb" />
     <Compile Include="Models\Shape.vb" />
     <Compile Include="Models\Square.vb" />
-    <Compile Include="Models\Vertice.vb" />
+    <Compile Include="Models\Vertex.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

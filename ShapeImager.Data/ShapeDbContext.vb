@@ -24,6 +24,6 @@ Public Class ShapeDbContext
     Public Overridable Property Polygons As DbSet(Of Polygon)
     Public Overridable Property Shapes As DbSet(Of Shape)
     Public Overridable Property Squares As DbSet(Of Square)
-    Public Overridable Property Vertices As DbSet(Of Vertice)
+    Public Overridable Property Vertices As DbSet(Of Vertex)
 
 End Class

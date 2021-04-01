@@ -1,4 +1,4 @@
-﻿Public Class Vertice
+﻿Public Class Vertex
     Public Sub New()
 
     End Sub

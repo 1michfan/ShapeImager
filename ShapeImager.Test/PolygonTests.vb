@@ -20,12 +20,12 @@ Public Class PolygonTests
 
     Private Shared Function CreateTestPolygon() As Polygon
         Dim poly As New Polygon()
-        poly.Vertices.Add(New Vertice(1, 1))
-        poly.Vertices.Add(New Vertice(7, 20))
-        poly.Vertices.Add(New Vertice(15, 75))
-        poly.Vertices.Add(New Vertice(20, 100))
-        poly.Vertices.Add(New Vertice(10, 50))
-        poly.Vertices.Add(New Vertice(1, 1))
+        poly.Vertices.Add(New Vertex(1, 1))
+        poly.Vertices.Add(New Vertex(7, 20))
+        poly.Vertices.Add(New Vertex(15, 75))
+        poly.Vertices.Add(New Vertex(20, 100))
+        poly.Vertices.Add(New Vertex(10, 50))
+        poly.Vertices.Add(New Vertex(1, 1))
         Return poly
     End Function
 End Class
