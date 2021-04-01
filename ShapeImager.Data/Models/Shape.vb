@@ -7,7 +7,7 @@ Public MustInherit Class Shape
     End Sub
 
     Public Property Id As Integer
-    Public Overridable Property Center As Vertice
+    Public Overridable Property Center As Vertex
     Public Property Color As Integer
     Public Property Orientation As Decimal
 

@@ -153,7 +153,7 @@ Public Class ShapeListForm
 
     Private Sub AddNewShape(shapeType As Type)
         Dim shape = Activator.CreateInstance(shapeType)
-        shape.Center = New Vertice()
+        shape.Center = New Vertex()
         _db.Shapes.Add(shape)
         FillSumLabels()
     End Sub

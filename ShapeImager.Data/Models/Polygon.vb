@@ -4,9 +4,9 @@ Public Class Polygon
     Inherits Shape
 
     Public Sub New()
-        Vertices = New List(Of Vertice)
+        Vertices = New List(Of Vertex)
     End Sub
-    Public Overridable Property Vertices As ICollection(Of Vertice)
+    Public Overridable Property Vertices As ICollection(Of Vertex)
     Private ReadOnly Property Sides As Integer
         Get
             'last vertices is repeat of the first one
@@ -37,12 +37,12 @@ Public Class Polygon
         End Get
     End Property
 
-    Private Function GetDistance(p1 As Vertice, p2 As Vertice) As Decimal
+    Private Function GetDistance(p1 As Vertex, p2 As Vertex) As Decimal
         Return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2))
     End Function
 
-    Public Function FindCentroid() As Vertice
-        If Sides < 3 Then Return New Vertice(0, 0)
+    Public Function FindCentroid() As Vertex
+        If Sides < 3 Then Return New Vertex(0, 0)
         Dim num_points As Integer = Sides
         Dim pts As PointF() = New PointF(num_points + 1) {}
         For i = 0 To num_points
@@ -67,7 +67,7 @@ Public Class Polygon
             Y = -Y
         End If
 
-        Return New Vertice(X, Y)
+        Return New Vertex(X, Y)
     End Function
 
 End Class
