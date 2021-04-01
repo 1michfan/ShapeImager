@@ -65,10 +65,6 @@ Partial Class ShapeListForm
         Me.tbSideLength = New System.Windows.Forms.NumericUpDown()
         Me.BsEquilateral = New System.Windows.Forms.BindingSource(Me.components)
         Me.gvVertice = New System.Windows.Forms.DataGridView()
-        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.XDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.YDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PolygonDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BsVertice = New System.Windows.Forms.BindingSource(Me.components)
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -81,6 +77,10 @@ Partial Class ShapeListForm
         Me.lblAvgArea = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblAvgPerim = New System.Windows.Forms.Label()
+        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.XDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.YDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PolygonDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Radius1Label = New System.Windows.Forms.Label()
         Radius2Label = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
@@ -396,7 +396,7 @@ Partial Class ShapeListForm
         '
         'BsCenter
         '
-        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertice)
+        Me.BsCenter.DataSource = GetType(ShapeImager.Data.Vertex)
         '
         'Label2
         '
@@ -522,35 +522,9 @@ Partial Class ShapeListForm
         Me.gvVertice.Size = New System.Drawing.Size(246, 244)
         Me.gvVertice.TabIndex = 0
         '
-        'IdDataGridViewTextBoxColumn1
-        '
-        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
-        Me.IdDataGridViewTextBoxColumn1.Visible = False
-        Me.IdDataGridViewTextBoxColumn1.Width = 50
-        '
-        'XDataGridViewTextBoxColumn
-        '
-        Me.XDataGridViewTextBoxColumn.DataPropertyName = "X"
-        Me.XDataGridViewTextBoxColumn.HeaderText = "X"
-        Me.XDataGridViewTextBoxColumn.Name = "XDataGridViewTextBoxColumn"
-        '
-        'YDataGridViewTextBoxColumn
-        '
-        Me.YDataGridViewTextBoxColumn.DataPropertyName = "Y"
-        Me.YDataGridViewTextBoxColumn.HeaderText = "Y"
-        Me.YDataGridViewTextBoxColumn.Name = "YDataGridViewTextBoxColumn"
-        '
-        'PolygonDataGridViewTextBoxColumn
-        '
-        Me.PolygonDataGridViewTextBoxColumn.DataPropertyName = "Polygon"
-        Me.PolygonDataGridViewTextBoxColumn.HeaderText = "Polygon"
-        Me.PolygonDataGridViewTextBoxColumn.Name = "PolygonDataGridViewTextBoxColumn"
-        '
         'BsVertice
         '
-        Me.BsVertice.DataSource = GetType(ShapeImager.Data.Vertice)
+        Me.BsVertice.DataSource = GetType(ShapeImager.Data.Vertex)
         '
         'FlowLayoutPanel2
         '
@@ -697,6 +671,33 @@ Partial Class ShapeListForm
         Me.lblAvgPerim.TabIndex = 11
         Me.lblAvgPerim.Text = "0"
         '
+        'IdDataGridViewTextBoxColumn1
+        '
+        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "Id"
+        Me.IdDataGridViewTextBoxColumn1.HeaderText = "Id"
+        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
+        Me.IdDataGridViewTextBoxColumn1.Visible = False
+        Me.IdDataGridViewTextBoxColumn1.Width = 50
+        '
+        'XDataGridViewTextBoxColumn
+        '
+        Me.XDataGridViewTextBoxColumn.DataPropertyName = "X"
+        Me.XDataGridViewTextBoxColumn.HeaderText = "X"
+        Me.XDataGridViewTextBoxColumn.Name = "XDataGridViewTextBoxColumn"
+        '
+        'YDataGridViewTextBoxColumn
+        '
+        Me.YDataGridViewTextBoxColumn.DataPropertyName = "Y"
+        Me.YDataGridViewTextBoxColumn.HeaderText = "Y"
+        Me.YDataGridViewTextBoxColumn.Name = "YDataGridViewTextBoxColumn"
+        '
+        'PolygonDataGridViewTextBoxColumn
+        '
+        Me.PolygonDataGridViewTextBoxColumn.DataPropertyName = "Polygon"
+        Me.PolygonDataGridViewTextBoxColumn.HeaderText = "Polygon"
+        Me.PolygonDataGridViewTextBoxColumn.Name = "PolygonDataGridViewTextBoxColumn"
+        Me.PolygonDataGridViewTextBoxColumn.Visible = False
+        '
         'ShapeListForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -759,10 +760,6 @@ Partial Class ShapeListForm
     Friend WithEvents tlpRadius2 As TableLayoutPanel
     Friend WithEvents gvVertice As DataGridView
     Friend WithEvents BsVertice As BindingSource
-    Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents XDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents YDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents PolygonDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents lblTotalArea As Label
     Friend WithEvents Label5 As Label
@@ -783,4 +780,8 @@ Partial Class ShapeListForm
     Friend WithEvents lblAvgArea As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents lblAvgPerim As Label
+    Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents XDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents YDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PolygonDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 End Class

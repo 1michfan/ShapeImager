@@ -77,7 +77,7 @@ Public Class CsvParser
             Dim x = rec(i)
             i += 2
             Dim y = rec(i)
-            poly.Vertices.Add(New Vertice(x, y))
+            poly.Vertices.Add(New Vertex(x, y))
         End While
         Return poly
     End Function

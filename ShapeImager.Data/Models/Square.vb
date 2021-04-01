@@ -7,7 +7,7 @@
     End Sub
 
     Public Sub New(centerX As Decimal, centerY As Decimal, sideLength As Decimal, orientation As Decimal)
-        Center = New Vertice(centerX, centerY)
+        Center = New Vertex(centerX, centerY)
         MyBase.Orientation = orientation
         MyBase.SideLength = sideLength
     End Sub
